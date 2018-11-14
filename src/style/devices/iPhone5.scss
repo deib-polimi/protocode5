@@ -1,0 +1,78 @@
+$width: 320px;
+$height: 568px;
+$statusBar: 20px;
+$commandBar: 0;
+$actionBar: 44px;
+$tabBar: 48px;
+$menu: 67%;
+
+.smartphone-view.iPhone5 {
+    padding: 122px 28px 115px 32px;
+    width: $width;
+    height: $height;
+    background-image: url("#{$img}/smartphones/ios/iPhone_5.png");
+    .smartphone-screen-view .status-bar {
+        height: $statusBar;
+        background-image: url("#{$img}/ui_phone_controls/ios/status_bar5.png");
+    }
+    .action-bar {
+        height: $actionBar;
+        line-height: $actionBar;
+    }
+    .action-bar .bar-content-menu {
+        margin-left: 58px;
+        color: #FFFFFF;
+        font-size: 22px;
+    }
+    .app-menu {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: flex-start;
+        background-color: #F9F9F9;
+        width: $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+    }
+    .app-menu-shadow {
+        position: absolute;
+        background-color: #000000;
+        opacity: 0.5;
+        width: 100% - $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+        left: $menu;
+    }
+    &.withTabs {
+        .tab-menu {
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            align-items: flex-end;
+            background-color: rgb(247, 247, 247);
+            width: 100%; 
+            height: $tabBar; 
+        }
+        .view-controller-preview-view {
+            width: $width;
+            height: $height - $statusBar - $actionBar - $tabBar - $commandBar;
+        }
+    }
+    .view-controller-preview-view {
+        width: $width;
+        height: $height - $statusBar - $actionBar - $commandBar;
+    }
+    .command-bar {
+        height: $commandBar;
+    }
+    .control-grid-view-cell,
+    .control-grid-view-cell .grid-image,
+    .control-grid-view-cell .grid-image-empty {
+        height: 158px;
+        width: 158px;
+    }
+    .control-card .card-buttons {
+        padding-top: 10px;
+    }
+}

@@ -1,0 +1,81 @@
+$width: 375px;
+$height: 812px;
+$statusBar: 44px;
+$commandBar: 0;
+$actionBar: 44px;
+$menu: 67%;
+.smartphone-view.iPhoneX {
+    padding: 26px 28px 26px 28px;
+    width: $width;
+    height: $height;
+    background-image: url("#{$img}/smartphones/ios/iPhone_X.png");
+    .smartphone-screen-view .status-bar {
+        height: $statusBar;
+        background-color: rgba(0, 0, 0, 0); // It is embedded in the background-image of the smartphone view
+    }
+    .action-bar {
+        height: $actionBar;
+        line-height: $actionBar;
+    }
+    .action-bar .bar-content-menu {
+        margin-left: 58px;
+        color: #FFFFFF;
+        font-size: 22px;
+    }
+    .app-menu {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: flex-start;
+        background-color: #F9F9F9;
+        width: $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+        border-bottom-left-radius: 35px;
+    }
+    .app-menu-shadow {
+        position: absolute;
+        background-color: #000000;
+        opacity: 0.5;
+        width: 100% - $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+        left: $menu;
+    }
+    &.withTabs {
+        .tab-menu {
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            align-items: flex-end;
+            background-color: rgb(247, 247, 247);
+            width: 100%;
+            height: $tabBar;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+        }
+        .view-controller-preview-view {
+            width: $width;
+            height: $height - $statusBar - $actionBar - $tabBar - $commandBar;
+        }
+    }
+    .view-controller-preview-view {
+        width: $width;
+        height: $height - $statusBar - $actionBar - $commandBar;
+        border-bottom-left-radius: 35px;
+        border-bottom-right-radius: 35px;
+    }
+    .command-bar {
+        height: $commandBar;
+    }
+    .control-grid-view-cell,
+    .control-grid-view-cell .grid-image,
+    .control-grid-view-cell .grid-image-empty {
+        height: 185px;
+        width: 185px;
+    }
+    .control-card .card-buttons {
+        padding-top: 18px;
+    }
+}

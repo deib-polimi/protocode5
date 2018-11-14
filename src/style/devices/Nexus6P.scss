@@ -1,0 +1,82 @@
+$width: 411px;
+$height: 731px;
+$statusBar: 30px;
+$tabBar: 48px;
+$commandBar: 55px;
+$actionBar: 64px;
+$menu: 67%;
+.smartphone-view.Nexus6P {
+    //Padding per centrare lo schermo
+    //dimensione schermo in pixel = dimensione in dp 411x731
+    padding: 94px 20px 89px 18px;
+    width: $width;
+    height: $height;
+    background-image: url("#{$img}/smartphones/android/nexus_6p.png");
+    .status-bar,
+    .status-bar-menu {
+        height: $statusBar;
+        background-image: url("#{$img}/ui_phone_controls/android/status_bar6p.png");
+    }
+    .action-bar {
+        height: $actionBar;
+        line-height: $actionBar;
+    }
+    .action-bar .bar-content-menu {
+        margin-left: 58px;
+        background-size: auto 93%;
+        color: #FFFFFF;
+        font-size: 22px;
+    }
+    .app-menu {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: flex-start;
+        background-color: #F9F9F9;
+        width: $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+    }
+    .app-menu-shadow {
+        position: absolute;
+        background-color: #000000;
+        opacity: 0.5;
+        width: 100% - $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+        left: $menu;
+    }
+    &.withTabs {
+        .tab-menu {
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            align-items: flex-end;
+            background-color: #3F51B5;
+            width: 100%; 
+            height: $tabBar;
+        }
+        .view-controller-preview-view {
+            width: $width;
+            height: $height - $statusBar - $actionBar - $tabBar - $commandBar;
+        }
+    }
+    .view-controller-preview-view {
+        width: $width;
+        height: $height - $actionBar - $statusBar - $commandBar;
+    }
+    .command-bar {
+        height: $commandBar;
+        background-image: url("#{$img}/ui_phone_controls/android/command_bar6p.png");
+    }
+    .control-grid-view-cell,
+    .control-grid-view-cell .grid-image,
+    .control-grid-view-cell .grid-image-empty {
+        height: 203px;
+        width: 203px;
+    }
+    .control-card .card-image {
+        height: 222px;
+    }
+}

@@ -1,0 +1,74 @@
+$img: "../img";
+
+/* ============= ANDROID ============== */
+@import 'devices/GooglePixel.scss';
+@import 'devices/Nexus6P.scss';
+@import 'devices/Nexus5.scss';
+@import 'devices/Nexus7.scss';
+@import 'devices/Nexus9.scss';
+@import 'devices/Nexus10.scss';
+
+/* ============= iOS ================== */
+@import 'devices/iPhoneX.scss';
+@import 'devices/iPhone7Plus.scss';
+@import 'devices/iPhone7.scss';
+@import 'devices/iPhone6Plus.scss';
+@import 'devices/iPhone6.scss';
+@import 'devices/iPhone5.scss';
+@import 'devices/iPad12_9.scss';
+@import 'devices/iPad9_7.scss';
+
+/*============ SMARTWATCHES ============*/
+
+.smartwatch-view.AppleWatch {
+    //Padding per centrare lo schermo
+    //dimensione schermo in pixel = dimensione in dp 136x170
+    padding: 152px 100px 153px 100px;
+    background-image: url("#{$img}/smartwatches/watchos/AppleWatch.png");
+}
+
+.smartwatch-view.Moto360 {
+    //Padding per centrare lo schermo
+    //dimensione schermo in pixel = dimensione in dp 187x187
+    padding: 120px 58px 132px 57px;
+    background-image: url("#{$img}/smartwatches/androidwear/Moto360.png");
+}
+
+.smartwatch-view.AsusZenWatch {
+    //Padding per centrare lo schermo
+    //dimensione schermo in pixel = dimensione in dp 187x187
+    padding: 122px 64px 165px 79px;
+    background-image: url("#{$img}/smartwatches/androidwear/AsusZenWatch.png");
+}
+
+.smartwatch-view.AppleWatch .smartwatch-screen-view {
+    background-color: #000000;
+}
+
+.smartwatch-view.Moto360 .smartwatch-screen-view {
+    background-color: #000000;
+    border-radius: 135px;
+}
+
+.smartwatch-view.AsusZenWatch .smartwatch-screen-view {
+    background-color: #000000;
+    border-radius: 7px;
+}
+
+.AsusZenWatch .control-watch-slider .watch-slider-right-row {
+    left: 55%;
+    width: 37%;
+}
+
+.AsusZenWatch .control-watch-slider .watch-slider-left-row {
+    width: 40%;
+}
+
+.Moto360 .control-watch-slider .watch-slider-right-row {
+    left: 54%;
+    width: 38%;
+}
+
+.Moto360 .control-watch-slider .watch-slider-left-row {
+    width: 41%;
+}

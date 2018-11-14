@@ -1,0 +1,116 @@
+// Variables refer to LANDSCAPE orientation
+$width: 1280px;
+$height: 800px;
+$statusBar: 24px;
+$commandBar: 47px;
+$actionBar: 64px;
+$menu: 857px;
+$menu_rotated: 536px;
+
+.tablet-view.Nexus10 {
+    padding: 132px 130px 127px 133px;
+    width: $width;
+    height: $height;
+    background-image: url("#{$img}/tablets/android/nexus_10.png");
+    .tablet-screen-view .status-bar,
+    .tablet-screen-view .status-bar-menu {
+        height: $statusBar;
+        background-image: url("#{$img}/ui_phone_controls/android/status_bar10.png");
+    }
+    .action-bar {
+        height: $actionBar;
+        line-height: $actionBar;
+    }
+    .action-bar .bar-content-menu {
+        margin-left: 58px;
+        background-size: auto 93%;
+        color: #FFFFFF;
+        font-size: 22px;
+    }
+    .app-menu {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: flex-start;
+        background-color: #F9F9F9;
+        width: $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+    }
+    .app-menu-shadow {
+        position: absolute;
+        background-color: #000000;
+        opacity: 0.5;
+        width: $width - $menu;
+        height: $height - $statusBar - $commandBar;
+        top: $statusBar;
+        left: $menu;
+    }
+    &.withTabs {
+        .tab-menu {
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            align-items: flex-end;
+            background-color: #3F51B5;
+            width: 100%;
+            height: $tabBar;
+        }
+        .view-controller-preview-view {
+            width: $width;
+            height: $height - $statusBar - $actionBar - $tabBar - $commandBar;
+        }
+    }
+    .view-controller-preview-view {
+        width: $width;
+        height: $height - $actionBar - $statusBar - $commandBar;
+    }
+    .tablet-screen-view .command-bar {
+        height: $commandBar;
+        background-image: url("#{$img}/ui_phone_controls/android/command_bar10.png");
+    }
+    .control-grid-view-cell,
+    .control-grid-view-cell .grid-image,
+    .control-grid-view-cell .grid-image-empty {
+        height: 203px;
+        width: 203px;
+    }
+    .control-card .card-image {
+        height: 222px;
+    }
+    &.rotated {
+        padding: 130px 127px 133px 132px;
+        width: $height;
+        height: $width;
+        background-image: url("#{$img}/tablets/android/nexus_10_rotated.png");
+        .tablet-screen-view .status-bar,
+        .tablet-screen-view .status-bar-menu {
+            background-image: url("#{$img}/ui_phone_controls/android/status_bar10_rotated.png");
+        }
+        .app-menu {
+            width: $menu_rotated;
+            height: $width - $statusBar - $commandBar;
+            top: $statusBar;
+        }
+        .app-menu-shadow {
+            width: $height - $menu_rotated;
+            height: $width - $statusBar - $commandBar;
+            top: $statusBar;
+            left: $menu_rotated;
+        }
+        &.withTabs {
+            .view-controller-preview-view {
+                width: $height;
+                height: $width - $actionBar - $statusBar - $tabBar - $commandBar;
+            }
+        }
+        .view-controller-preview-view {
+            width: $height;
+            height: $width - $actionBar - $statusBar - $commandBar;
+        }
+        .tablet-screen-view .command-bar {
+            background-image: url("#{$img}/ui_phone_controls/android/command_bar10_rotated.png");
+        }
+    }
+}
