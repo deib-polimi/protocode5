@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigator from './Navigator';
-import { Col, Row, Container, Button } from 'react-bootstrap';
+import { Col, Row, Container, Button, Card } from 'react-bootstrap';
 import { Route, Redirect, Switch } from 'react-router';
 import { createViewController, editViewController, deleteViewController } from '../../../actions/ViewController';
 import { createScene, editScene, deleteScene, unlinkViewController, linkViewController, editContainer } from '../../../actions/Scene';
@@ -29,6 +29,8 @@ import { createMenuItem, deleteMenuItem, editMenuItem } from '../../../actions/M
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import SceneReport from './report/Scene';
+import ViewControllerReport from './report/ViewController';
 
 /**
  * props = { match, app, scenes, viewControllers, scene, viewController, onCreate, onEdit, onDelete }
@@ -205,6 +207,22 @@ class SmartphoneEditorTemplate extends React.Component {
                                     </Switch>
                                 </Row>
                             }
+                            <Row>
+                                {scene &&
+                                    <Card className="w-100 h-100 mt-3">
+                                        <Card.Body>
+                                            <SceneReport scene={scene} />
+                                        </Card.Body>
+                                    </Card>
+                                }
+                                {!scene && viewController &&
+                                    <Card className="w-100 h-100 mt-3">
+                                        <Card.Body>
+                                            <ViewControllerReport viewController={viewController} />
+                                        </Card.Body>
+                                    </Card>
+                                }
+                            </Row>
                         </Col>
                         <Col sm={9}>
                             {(scene || viewController) &&
