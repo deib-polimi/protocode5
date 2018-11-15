@@ -3,6 +3,7 @@ import SceneEditor from './scene/Editor';
 import { Nav } from 'react-bootstrap';
 import { Route, Switch } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
+import SmartwatchEditor from './watch/Editor';
 
 const Editor = ({ match }) => (
     <>
@@ -13,7 +14,7 @@ const Editor = ({ match }) => (
                 </LinkContainer>
             </Nav.Item>
             <Nav.Item> 
-                <LinkContainer to={`${match.url}/smartwatch`}>
+                <LinkContainer to={`${match.url}/watch`}>
                     <Nav.Link eventKey="smartwatch">Smartwatch</Nav.Link>
                 </LinkContainer>
             </Nav.Item>
@@ -23,6 +24,9 @@ const Editor = ({ match }) => (
             <Route path={`${match.path}/scenes/:sid/viewControllers/:vcid`} component={SceneEditor} />
             <Route path={`${match.path}/scenes/:sid`} component={SceneEditor} />
             <Route path={`${match.path}/scenes`} component={SceneEditor} />
+
+            <Route path={`${match.path}/watch/:wid`} component={SmartwatchEditor} />
+            <Route path={`${match.path}/watch`} component={SmartwatchEditor} />
         </Switch>
     </>
 );

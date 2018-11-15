@@ -1,0 +1,20 @@
+.smartwatch-view.AsusZenWatch {
+    //Padding per centrare lo schermo
+    //dimensione schermo in pixel = dimensione in dp 187x187
+    padding: 122px 64px 165px 79px;
+    background-image: url("#{$img}/smartwatches/androidwear/AsusZenWatch.png");
+
+    .smartwatch-screen-view {
+        background-color: #000000;
+        border-radius: 7px;
+    }
+
+    .control-watch-slider .watch-slider-right-row {
+        left: 55%;
+        width: 37%;
+    }
+    
+    .control-watch-slider .watch-slider-left-row {
+        width: 40%;
+    }
+}

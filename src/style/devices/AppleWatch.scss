@@ -1,0 +1,17 @@
+.smartwatch-view.AppleWatch {
+    //Padding per centrare lo schermo
+    //dimensione schermo in pixel = dimensione in dp 136x170
+    padding: 152px 100px 153px 100px;
+    background-image: url("#{$img}/smartwatches/watchos/AppleWatch.png");
+    
+    .smartwatch-screen-view {
+        background-color: #000000;
+
+        .status-bar {
+            width: 100%;
+            background-size: 100% auto;
+            background: url("../img/ui_watch_controls/watchos/status_bar.png") no-repeat;
+            height: 22px;
+        }
+    }
+}

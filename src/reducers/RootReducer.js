@@ -14,6 +14,8 @@ import UiPhoneControlReducer from './UiPhoneControl';
 import ViewControllersReducer from './ViewControllers';
 import NavigationReducer from './Navigation';
 import MenuReducer from './Menu';
+import WatchControllerReducer from './WatchController';
+import WatchControlReducer from './WatchControl';
 
 const RootReducer = combineReducers({
     application: ApplicationReducer,
@@ -30,7 +32,10 @@ const RootReducer = combineReducers({
     controlChains: ControlChainReducer,
     containers: ContainerReducer,
     navigations: NavigationReducer,
-    menu: MenuReducer
+    menu: MenuReducer,
+
+    watchControllers: WatchControllerReducer,
+    watchControls: WatchControlReducer,
 });
 
 export default RootReducer;

@@ -6,15 +6,6 @@ $ios-uiview-background-color: #9db2cc;
     .smartwatch-view {
         font: 16px -apple-system-font, ".Helvetica NeueUI", "Helvetica Neue", sans-serif;
     }
-    .smartwatch-screen-view .status-bar {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-        background-size: 100% auto;
-        background: url("../img/ui_watch_controls/watchos/status_bar.png") no-repeat;
-        height: 22px;
-    }
     /*============ WATCH BUTTONS ============*/
     .control-watch-button {
         background-color: #1f1f1f;
@@ -22,50 +13,60 @@ $ios-uiview-background-color: #9db2cc;
         text-align: center;
         font: 16px -apple-system-font, ".Helvetica NeueUI", "Helvetica Neue", sans-serif;
         border-radius: 8px;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        margin: 2px;
     }
     /*============ WATCH LABEL ============*/
     .control-watch-label {
         font: 16px -apple-system-font, ".Helvetica NeueUI", "Helvetica Neue", sans-serif;
     }
     /*============ WATCH SWITCH ============*/
-    .control-watch-switch .control-content {
-        background-color: #1f1f1f;
-        border-radius: 8px;
-    }
-    .control-watch-switch .watch-switch-image {
-        width: 64px;
-        height: 32px;
-        margin: auto 4px auto 0;
-        background: url('../img/ui_watch_controls/watchos/watch_switch_circle.png');
-    }
-    .control-watch-switch .watch-switch-title {
-        width: 100%;
-        font: 16px -apple-system-font, ".Helvetica NeueUI", "Helvetica Neue", sans-serif;
-        margin: auto 0 auto 8px;
-        overflow: hidden;
+    .control-watch-switch {
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        margin: 2px;
+        .control-content {
+            background-color: #1f1f1f;
+            border-radius: 8px;
+        }
+        .watch-switch-image {
+            width: 64px;
+            height: 32px;
+            margin: auto 4px auto 0;
+            background: url('../img/ui_watch_controls/watchos/watch_switch_circle.png');
+        }
+        .watch-switch-title {
+            width: 100%;
+            font: 16px -apple-system-font, ".Helvetica NeueUI", "Helvetica Neue", sans-serif;
+            margin: auto 0 auto 8px;
+            overflow: hidden;
+        }
     }
     /*============ WATCH SLIDER ============*/
-    .control-watch-slider .watch-slider-left-row,
-    .control-watch-slider .watch-slider-image,
-    .control-watch-slider .watch-slider-right-row {
-        display: none;
-    }
-    .control-watch-slider .control-content {
-        background-color: #1f1f1f;
-        border-radius: 8px;
-    }
-    .control-watch-slider .watch-slider-minus,
-    .control-watch-slider .watch-slider-plus {
-        margin: auto;
-    }
-    .control-watch-slider .watch-slider-dash {
-        margin: auto 1px;
-    }
-    .dash-green {
-        color: rgb(94, 207, 92);
-    }
-    .dash-gray {
-        color: rgb(17, 37, 20);
+    .control-watch-slider {
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        margin: 2px;
+        .watch-slider-left-row, .watch-slider-image, .watch-slider-right-row {
+            display: none;
+        }
+        .control-content {
+            background-color: #1f1f1f;
+            border-radius: 8px;
+        }
+        .watch-slider-minus, .watch-slider-plus {
+            margin: auto;
+        }
+        .watch-slider-dash {
+            margin: auto 1px;
+        }
+        .dash-green {
+            color: rgb(94, 207, 92);
+        }
+        .dash-gray {
+            color: rgb(17, 37, 20);
+        }
     }
     /*============ WATCH VOICE MESSAGE ============*/
     .control-watch-voice-message {
@@ -74,6 +75,9 @@ $ios-uiview-background-color: #9db2cc;
         text-align: center;
         font: 16px -apple-system-font, ".Helvetica NeueUI", "Helvetica Neue", sans-serif;
         border-radius: 8px;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        margin: 2px;
     }
 }
 

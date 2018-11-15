@@ -116,3 +116,13 @@ export const SIDE_CENTER_Y = 'centerY';
 /* ================ Platforms ===================== */
 export const ANDROID = 'android';
 export const IOS = 'ios';
+export const WATCHOS = 'watchos';
+export const ANDROIDWEAR = 'androidwear';
+
+/* ================ WATCHES ======================= */
+export const WATCH_CONTROLLER = 'watch_controller';
+export const WATCH_BUTTON = 'watch_button';
+export const WATCH_LABEL = 'watch_label';
+export const WATCH_SLIDER = 'watch_slider';
+export const WATCH_SWITCH = 'watch_switch';
+export const WATCH_VOICE = 'watch_voice';

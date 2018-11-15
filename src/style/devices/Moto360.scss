@@ -1,0 +1,20 @@
+.smartwatch-view.Moto360 {
+    //Padding per centrare lo schermo
+    //dimensione schermo in pixel = dimensione in dp 187x187
+    padding: 120px 58px 132px 57px;
+    background-image: url("#{$img}/smartwatches/androidwear/Moto360.png");
+
+    .smartwatch-screen-view {
+        background-color: #000000;
+        border-radius: 135px;
+    }
+
+    .control-watch-slider .watch-slider-right-row {
+        left: 54%;
+        width: 38%;
+    }
+    
+    .control-watch-slider .watch-slider-left-row {
+        width: 41%;
+    }
+}
