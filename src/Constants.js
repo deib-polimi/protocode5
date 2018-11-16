@@ -126,3 +126,5 @@ export const WATCH_LABEL = 'watch_label';
 export const WATCH_SLIDER = 'watch_slider';
 export const WATCH_SWITCH = 'watch_switch';
 export const WATCH_VOICE = 'watch_voice';
+
+export const WATCH_CLICK_LISTENER = 'watch_click_listener';

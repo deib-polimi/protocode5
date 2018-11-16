@@ -16,6 +16,7 @@ import NavigationReducer from './Navigation';
 import MenuReducer from './Menu';
 import WatchControllerReducer from './WatchController';
 import WatchControlReducer from './WatchControl';
+import WatchClickListenerReducer from './WatchClickListener';
 
 const RootReducer = combineReducers({
     application: ApplicationReducer,
@@ -36,6 +37,7 @@ const RootReducer = combineReducers({
 
     watchControllers: WatchControllerReducer,
     watchControls: WatchControlReducer,
+    watchClickListeners: WatchClickListenerReducer
 });
 
 export default RootReducer;

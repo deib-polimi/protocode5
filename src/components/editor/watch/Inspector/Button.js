@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faExpand } from '@fortawesome/free-solid-svg-icons';
 import DimensionTab from './utils/DimensionTab';
 import { ControlText } from './utils/FormKit';
+import NavigationEditor from './partials/NavigationEditor';
 
-const ButtonInspector = ({ control, onEdit }) => (
+const ButtonInspector = ({ control, onEdit, watchControllers, onNavigationCreate, onNavigationDelete, onNavigationEdit }) => (
     <Tab.Container id="props-editor" defaultActiveKey="main">
         <Nav variant="tabs" className="border-bottom mb-3">
             <Nav.Item>
@@ -24,16 +25,13 @@ const ButtonInspector = ({ control, onEdit }) => (
                 <Form>
                     <ControlText caption="Name" value={control.name} onChange={value => onEdit('name', value)} />
                     <ControlText caption="Title" value={control.title} onChange={value => onEdit('title', value)} />
-                    {/* false &&
-                        <NavigationEditor
-                            navigation={navigation}
-                            scenes={scenes.filter(s => s.id !== scene.id)}
-                            viewControllers={targetViewControllers}
-                            onCreate={() => onNavigationCreate(scene.id, viewController.id, control.id, null, null)}
-                            onEdit={(toSceneId, toViewControllerId) => onNavigationEdit(navigation.id, toSceneId, toViewControllerId)}
-                            onDelete={() => onNavigationDelete(navigation.id)}
-                        />
-                    */ }
+                    <NavigationEditor
+                        navigation={control.watchClickListener}
+                        watchControllers={watchControllers.filter(wc => wc.id !== control.watchControllerId)}
+                        onCreate={() => onNavigationCreate(control.id, control.watchControllerId)}
+                        onEdit={dest => onNavigationEdit(control.watchClickListener.id, 'destinationId', dest)}
+                        onDelete={() => onNavigationDelete(control.watchClickListener.id)}
+                    />
                 </Form>
             </Tab.Pane>
             <Tab.Pane eventKey="dimension">

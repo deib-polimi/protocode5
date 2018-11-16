@@ -1,5 +1,5 @@
 import React from 'react';
-import { WATCH_LABEL, WATCH_BUTTON, WATCH_SLIDER, WATCH_SWITCH, WATCH_VOICE } from '../../../Constants';
+import { WATCH_LABEL, WATCH_BUTTON, WATCH_SLIDER, WATCH_SWITCH, WATCH_VOICE, WATCH_CLICK_LISTENER } from '../../../Constants';
 import LabelInspector from './Inspector/Label';
 import ButtonInspector from './Inspector/Button';
 import SwitchInspector from './Inspector/Switch';
@@ -19,7 +19,7 @@ const Contents = {
     [WATCH_VOICE]: VoiceInspector
 }
 
-const Inspector = ({ watchController, controlId, onEdit, onDelete }) => {
+const Inspector = ({ watchController, controlId, onEdit, onDelete, onCreate, watchControllers }) => {
     let control = watchController.controls.find(control => control.id === controlId);
     if (control) {
         let Content = Contents[control.watchControlType];
@@ -37,8 +37,12 @@ const Inspector = ({ watchController, controlId, onEdit, onDelete }) => {
                 <Card.Body>
                     <Content
                         watchController={watchController}
+                        watchControllers={watchControllers}
                         control={control}
                         onEdit={(prop, value) => onEdit(control.watchControlType, control.id, prop, value)}
+                        onNavigationCreate={(...args) => onCreate(WATCH_CLICK_LISTENER, ...args)}
+                        onNavigationEdit={(...args) => onEdit(WATCH_CLICK_LISTENER, ...args)}
+                        onNavigationDelete={(...args) => onDelete(WATCH_CLICK_LISTENER, ...args)}
                     />
                 </Card.Body>
                 <Card.Footer>

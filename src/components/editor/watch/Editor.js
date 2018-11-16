@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { createWatchControl, deleteWatchControl, editWatchControl } from '../../../actions/WatchControl';
 import { createWatchController, deleteWatchController, editWatchController } from '../../../actions/WatchController';
-import { WATCHOS, WATCH_BUTTON, WATCH_CONTROLLER, WATCH_LABEL, WATCH_SLIDER, WATCH_SWITCH, WATCH_VOICE } from '../../../Constants';
+import { WATCHOS, WATCH_BUTTON, WATCH_CONTROLLER, WATCH_LABEL, WATCH_SLIDER, WATCH_SWITCH, WATCH_VOICE, WATCH_CLICK_LISTENER } from '../../../Constants';
 import { SmartWatches } from '../../../devices/Devices';
 import { WatchControllerSelector, WatchControllerSelectorAll } from '../../../selectors/WatchController';
 import Canvas from './canvas/Canvas';
 import Inspector from './Inspector';
 import WatchControllerEditor from './Inspector/WatchControllerEditor';
 import Navigator from './Navigator';
+import { createWatchClickListener, editWatchClickListener, deleteWatchClickListener } from '../../../actions/WatchClickListener';
 
 
 class SmartwatchEditorTemplate extends React.Component {
@@ -64,6 +65,7 @@ class SmartwatchEditorTemplate extends React.Component {
                                                 watchControllers={watchControllers}
                                                 controlId={props.match.params.controlId}
                                                 controlType={props.match.params.controlType}
+                                                onCreate={onCreate}
                                                 onEdit={onEdit}
                                                 onDelete={onDelete}
                                             />
@@ -124,6 +126,7 @@ const creators = {
     [WATCH_SLIDER]: (controllerId) => createWatchControl(WATCH_SLIDER, controllerId),
     [WATCH_SWITCH]: (controllerId) => createWatchControl(WATCH_SWITCH, controllerId),
     [WATCH_VOICE]: (controllerId) => createWatchControl(WATCH_VOICE, controllerId),
+    [WATCH_CLICK_LISTENER]: createWatchClickListener
 };
 
 const editors = {
@@ -133,6 +136,7 @@ const editors = {
     [WATCH_SLIDER]: editWatchControl,
     [WATCH_SWITCH]: editWatchControl,
     [WATCH_VOICE]: editWatchControl,
+    [WATCH_CLICK_LISTENER]: editWatchClickListener
 };
 
 const deletors = {
@@ -142,6 +146,7 @@ const deletors = {
     [WATCH_SLIDER]: deleteWatchControl,
     [WATCH_SWITCH]: deleteWatchControl,
     [WATCH_VOICE]: deleteWatchControl,
+    [WATCH_CLICK_LISTENER]: deleteWatchClickListener
 }
 
 const mapDispatchToProps = dispatch => {
