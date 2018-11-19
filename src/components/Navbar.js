@@ -4,8 +4,12 @@ import '../style/navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faCode } from '@fortawesome/free-solid-svg-icons';
 import { LinkContainer } from 'react-router-bootstrap';
+import XmlGenerator from '../xml/XmlGenerator';
 
-const MainComponent = ({ app, onCreate, onDelete }) => {
+const MainComponent = ({ app, model, onCreate, onDelete }) => {
+    let generateModelListener = () => {
+        XmlGenerator.DownloadModelXml(model);
+    }
     return (
         <>
             <Navbar bg="dark" expand="lg" className="navbar-default" fixed="top" variant="">
@@ -49,7 +53,7 @@ const MainComponent = ({ app, onCreate, onDelete }) => {
                             }
                             {app != null &&
                                 <Nav.Item>
-                                    <Nav.Link href="#">
+                                    <Nav.Link href="#" onSelect={generateModelListener}>
                                         <FontAwesomeIcon icon={faDownload} /> {'Model'}
                                     </Nav.Link>
                                 </Nav.Item>

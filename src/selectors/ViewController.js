@@ -7,21 +7,20 @@ import { ControlChainsSelector } from './ControlChain';
 import { SMARTPHONE, TABLET } from '../Constants';
 import { ContainerSelectorVC } from './Container';
 
-export default function ViewControllerSelector(state, viewControllerId) {
-    let viewController = DataArchive.Get(state.viewControllers, viewControllerId) || null;
+function recompute(state, viewController) {
     if (viewController) {
-        let containers = ContainerSelectorVC(state, viewControllerId);
+        let containers = ContainerSelectorVC(state, viewController.id);
         return {
             ...viewController,
             isParent: viewController.scene !== null,
-            alertDialogs: AlertDialogsSelector(state, viewControllerId),
-            progressDialogs: ProgressDialogsSelector(state, viewControllerId),
-            asyncTasks: AsyncTasksSelector(state, viewControllerId),
+            alertDialogs: AlertDialogsSelector(state, viewController.id),
+            progressDialogs: ProgressDialogsSelector(state, viewController.id),
+            asyncTasks: AsyncTasksSelector(state, viewController.id),
             controls: [
-                ...UiPhoneControlSelector(state, viewControllerId),
+                ...UiPhoneControlSelector(state, viewController.id),
                 ...containers
             ],
-            controlChains: ControlChainsSelector(state, viewControllerId),
+            controlChains: ControlChainsSelector(state, viewController.id),
             containers
         }
     } else {
@@ -29,8 +28,13 @@ export default function ViewControllerSelector(state, viewControllerId) {
     }
 }
 
+export default function ViewControllerSelector(state, viewControllerId) {
+    let viewController = DataArchive.Get(state.viewControllers, viewControllerId) || null;
+    return recompute(state, viewController);
+}
+
 export function ViewControllerAll(state) {
-    return DataArchive.All(state.viewControllers).filter(vc => vc.scene === null);
+    return DataArchive.All(state.viewControllers).filter(vc => vc.scene === null).map(recompute.bind(null, state));
 }
 
 export function ViewControllerScene(state, sceneId) {

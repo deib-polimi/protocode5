@@ -3,10 +3,9 @@ import { ViewControllerScene } from "./ViewController";
 import { SMARTPHONE } from "../Constants";
 import { NavigationSelectorAll } from "./Navigation";
 
-export default function SceneSelector(state, sceneId) {
-    let scene = DataArchive.Get(state.scenes, sceneId);
+function recompute(state, scene) {
     if (scene) {
-        let layout = ViewControllerScene(state, sceneId);
+        let layout = ViewControllerScene(state, scene.id);
         return {
             ...scene,
             layout,
@@ -18,6 +17,11 @@ export default function SceneSelector(state, sceneId) {
     }
 }
 
+export default function SceneSelector(state, sceneId) {
+    let scene = DataArchive.Get(state.scenes, sceneId);
+    return recompute(state, scene);
+}
+
 export function SceneAll(state) {
-    return DataArchive.All(state.scenes);
+    return DataArchive.All(state.scenes).map(recompute.bind(null, state));
 }

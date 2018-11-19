@@ -4,7 +4,8 @@ import { createApplication, deleteApplication } from '../actions/Application';
 
 const mapStateToProps = (state) => {
     return {
-        app: state.application
+        app: state.application,
+        model: state
     }
 }
 
