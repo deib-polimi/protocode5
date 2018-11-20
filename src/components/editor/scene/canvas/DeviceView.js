@@ -3,7 +3,7 @@ import '../../../../style/device-style.scss';
 import '../../../../style/android-style.scss';
 import '../../../../style/ios-style.scss';
 import ViewControllerView from './ViewControllerView';
-import { SCENE_SINGLE_VC_TAB, ANDROID, IOS } from '../../../../Constants';
+import { SCENE_SINGLE_VC_TAB, ANDROID, IOS, TABLET } from '../../../../Constants';
 import Menu from './uiPhoneControl/Menu';
 
 export const PORTRAIT = 'portrait';
@@ -11,7 +11,7 @@ export const LANDSCAPE = 'landscape';
 
 class DeviceView extends Component {
     render() {
-        let { device, zoom, rotation, scene, viewController, app, platform, onCreate, showMenu, menu } = this.props;
+        let { device, zoom, rotation, scene, viewController, app, platform, onCreate, showMenu, menu, activeControlId } = this.props;
         let showTab = viewController.isParent && viewController.type === SCENE_SINGLE_VC_TAB;
         let cssClasses = [`${device.type}-view`, device.platform, device.name, rotation === PORTRAIT ? 'rotated' : '', showTab ? 'withTabs' : ''].join(' ');
         let style = {
@@ -52,7 +52,17 @@ class DeviceView extends Component {
                                 ))}
                             </div>
                         }
-                        <ViewControllerView className="view-controller-preview-view" scene={scene} onCreate={onCreate} viewController={viewController} platform={platform} allowDrop={!viewController.isParent} />
+                        <ViewControllerView
+                            className="view-controller-preview-view"
+                            scene={scene}
+                            onCreate={onCreate}
+                            viewController={viewController}
+                            platform={platform}
+                            allowDrop={!viewController.isParent}
+                            activeControlId={activeControlId}
+                            width={device.type === TABLET && rotation === LANDSCAPE ? device.contentWidthRotated : device.contentWidth}
+                            height={device.type === TABLET && rotation === LANDSCAPE ? device.contentHeightRotated : device.contentHeight}
+                        />
                         {platform === IOS && showTab &&
                             <div className={`tab-menu ${platform}`}>
                                 {viewController.containers.map(vcbox => (

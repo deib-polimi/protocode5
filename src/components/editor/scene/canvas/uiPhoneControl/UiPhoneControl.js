@@ -46,7 +46,7 @@ const InnerControls = {
     [UI_PHONE_CONTROL_CONTAINER]: uiPhoneControlContainer,
 }
 
-const _UiPhoneControl = ({ scene, viewController, control, style, platform, onCreate, ...others }) => {
+const _UiPhoneControl = ({ scene, viewController, control, style, platform, onCreate, isActive, ...others }) => {
     let mystyle = {
         ...style,
         paddingTop: control.paddingTop,
@@ -69,7 +69,7 @@ const _UiPhoneControl = ({ scene, viewController, control, style, platform, onCr
     return (
         <Route render={({ history }) => {
             return (
-                <div className="ui-phone-control" style={mystyle} onClick={e => clickHandler(history, e)}>
+                <div className={`ui-phone-control ${isActive ? 'active' : ''}`} style={mystyle} onClick={e => clickHandler(history, e)}>
                     <Content scene={scene} viewController={viewController} control={control} platform={platform} onCreate={onCreate} />
                 </div>
             );
@@ -100,7 +100,7 @@ function createFullscreenContainerElement(platform, scene, viewController, contr
     return <UiPhoneControl {...props} id={control.id} key={control.id} />
 }
 
-export default function createUiPhoneControlElement(platform, scene, viewController, control, onCreate) {
+export default function createUiPhoneControlElement(platform, scene, viewController, control, isActive, onCreate) {
     if (control.uiPhoneControlType === UI_PHONE_CONTROL_CONTAINER && viewController.isParent && viewController.type !== SCENE_MULTI_VC) {
         // Override constraints, positions, margins, ecc to have a fullscreen presentation of the contained viewController
         return createFullscreenContainerElement(platform, scene, viewController, control, onCreate);
@@ -118,7 +118,8 @@ export default function createUiPhoneControlElement(platform, scene, viewControl
         marginTop: control.marginTop,
         marginBottom: control.marginBottom,
         marginStart: control.marginLeft,
-        marginEnd: control.marginRight
+        marginEnd: control.marginRight,
+        isActive
     };
     if (control.constraints) {
         // Position constraints

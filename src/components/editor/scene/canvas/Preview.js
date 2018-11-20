@@ -56,7 +56,7 @@ export default class Preview extends Component {
         });
     }
     render() {
-        let { viewController, device, platform, scene } = this.props;
+        let { viewController, device, platform, scene, activeControlId } = this.props;
         if (viewController) {
             return (
                 <Card>
@@ -103,6 +103,7 @@ export default class Preview extends Component {
                             rotation={this.state.rotation}
                             onCreate={this.props.onCreate}
                             menu={this.props.menu}
+                            activeControlId={activeControlId}
                         />
                     </Card.Body>
                 </Card>

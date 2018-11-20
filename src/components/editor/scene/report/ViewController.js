@@ -3,7 +3,7 @@ import { TextId, TextError, TextInfo, TextOk, Indent } from "./Toolkit";
 import { CONTROL_CHAIN_AXIS_HORIZONTAL, SIDE_START, SIDE_END, SIDE_CENTER_X, SIDE_CENTER_Y, SIDE_TOP, SIDE_BOTTOM, CONTROL_CHAIN_AXIS_VERTICAL, CONSTRAINT_VALID } from '../../../../Constants';
 
 const PositionSection = ({ positionChecks }) => (
-    <p>
+    <div>
         POSITION: <br />
         {positionChecks.map(check => {
             return (
@@ -14,7 +14,7 @@ const PositionSection = ({ positionChecks }) => (
                 </React.Fragment>
             )
         })}
-    </p>
+    </div>
 );
 
 const InvalidChainControl = ({ control }) => (
@@ -84,16 +84,16 @@ const ViewControllerReport = ({ viewController }) => {
         })
         .filter(control => control.invalid.length > 0);
     return (
-        <p>
+        <div>
             <b>REPORT</b> viewController <TextId>{viewController.name}</TextId>: <br />
             <Indent>
                 <PositionSection positionChecks={positionChecks} />
             </Indent>
             <Indent>
-                <p>
+                <div>
                     INVALID OBJECTS (not exported in the model):
                     <Indent>
-                        <p>
+                        <div>
                             Control chains:<br />
                             {viewController.controlChains.length > 0 && invalidChains.length === 0 &&
                                 <TextOk>All valid</TextOk>
@@ -106,10 +106,10 @@ const ViewControllerReport = ({ viewController }) => {
                                     <InvalidChain key={`Report-${chain.id}`} chain={chain} viewController={viewController} />
                                 ))
                             }
-                        </p>
+                        </div>
                     </Indent>
                     <Indent>
-                        <p>
+                        <div>
                             Constraints:<br />
                             {viewController.controls.length === 0 && 'No controls in this view controller'}
                             {viewController.controls.length > 0 && invalidConstraints.length > 0 &&
@@ -120,11 +120,11 @@ const ViewControllerReport = ({ viewController }) => {
                             {viewController.controls.length > 0 && invalidConstraints.length === 0 &&
                                 <TextOk>All valid</TextOk>
                             }
-                        </p>
+                        </div>
                     </Indent>
-                </p>
+                </div>
             </Indent>
-        </p>
+        </div>
     );
 }
 

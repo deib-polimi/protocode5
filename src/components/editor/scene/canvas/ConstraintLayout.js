@@ -49,16 +49,17 @@ export function withConstraints(WrappedComponent) {
             this.state = {
                 style: ConstraintCalculator.public[this.props.id] || {}
             }
+            this.listenerKey = null;
         }
         componentDidMount() {
-            ConstraintCalculator.addListener(this.props.id, style => {
+            this.listenerKey = ConstraintCalculator.addListener(this.props.id, style => {
                 this.setState({
                     style
                 });
             });
         }
         componentWillUnmount() {
-            ConstraintCalculator.removeListener(this.props.id);
+            ConstraintCalculator.removeListener(this.props.id, this.listenerKey);
         }
         render() {
             let {style, ...others} = this.props;

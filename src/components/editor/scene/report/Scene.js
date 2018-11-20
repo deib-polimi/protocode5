@@ -6,11 +6,11 @@ import ViewControllerReport from './ViewController';
 const SceneReport = ({ scene }) => {
     return (
         <>
-            <p>
+            <div>
                 <b>REPORT</b> scene <TextId>{scene.name}</TextId>: <br />
                 Scene is {scene.valid ? <TextOk>valid</TextOk> : <TextError>invalid</TextError>} <br />
                 Scene is {scene.reachable ? <TextOk>reachable</TextOk> : <TextWarn>unreachable</TextWarn>}
-            </p>
+            </div>
             <DottedLine />
             {scene.layout[SMARTPHONE].type === SCENE_MULTI_VC &&
                 <>

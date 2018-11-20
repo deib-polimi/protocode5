@@ -454,6 +454,7 @@ class ConstraintCalculatorImpl {
         this.public = {};
         this.events = {};
         this.size = 0;
+        this.listenerId = 1;
     }
 
     createGroup() {
@@ -464,6 +465,7 @@ class ConstraintCalculatorImpl {
 
     register(groupKey, element) {
         this.pending[groupKey].push(element);
+        this.events[element.props.id] = this.events[element.props.id] || {};
     }
 
     finalizeGroup(groupKey) {
@@ -486,7 +488,7 @@ class ConstraintCalculatorImpl {
                 ...publishStyles(styles)
             }
             for (let id in styles) {
-                if (this.events[id]) this.events[id](this.public[id]);
+                for(let k in this.events[id]) this.events[id][k](this.public[id]);
             }
         });
     }
@@ -500,11 +502,14 @@ class ConstraintCalculatorImpl {
     }
 
     addListener(elementId, fn) {
-        this.events[elementId] = style => fn(style);
+        let key = this.listenerId++;
+        if (!this.events[elementId]) this.events[elementId] = {};
+        this.events[elementId][key] = style => fn(style);
+        return key;
     }
 
-    removeListener(elementId) {
-        delete this.events[elementId];
+    removeListener(elementId, key) {
+        delete this.events[elementId][key];
     }
 
 }

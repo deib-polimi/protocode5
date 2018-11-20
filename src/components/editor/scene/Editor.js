@@ -226,17 +226,36 @@ class SmartphoneEditorTemplate extends React.Component {
                         </Col>
                         <Col sm={9}>
                             {(scene || viewController) &&
-                                <Canvas
-                                    app={app}
-                                    viewController={viewController || scene.layout[this.state.device.type]}
-                                    scene={scene}
-                                    platform={this.state.platform}
-                                    device={this.state.device}
-                                    onPlatformChange={this.changePlatform}
-                                    onDeviceChange={this.changeDevice}
-                                    onCreate={onCreate}
-                                    menu={menu}
-                                />
+                                <Switch>
+                                    <Route path={`${match.path}/:controlType/:controlId`} render={props => (
+                                        <Canvas
+                                            app={app}
+                                            viewController={viewController || scene.layout[this.state.device.type]}
+                                            scene={scene}
+                                            platform={this.state.platform}
+                                            device={this.state.device}
+                                            onPlatformChange={this.changePlatform}
+                                            onDeviceChange={this.changeDevice}
+                                            onCreate={onCreate}
+                                            menu={menu}
+                                            activeControlId={props.match.params.controlId}
+                                        />
+                                    )} />
+                                    <Route render={props => (
+                                        <Canvas
+                                            app={app}
+                                            viewController={viewController || scene.layout[this.state.device.type]}
+                                            scene={scene}
+                                            platform={this.state.platform}
+                                            device={this.state.device}
+                                            onPlatformChange={this.changePlatform}
+                                            onDeviceChange={this.changeDevice}
+                                            onCreate={onCreate}
+                                            menu={menu}
+                                            activeControlId={null}
+                                        />
+                                    )} />
+                                </Switch>
                             }
                         </Col>
                     </Row>

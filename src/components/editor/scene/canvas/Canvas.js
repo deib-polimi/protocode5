@@ -5,7 +5,7 @@ import Palette from '../../common/Palette';
 import Controls from '../palette/Controls';
 import Preview from './Preview';
 
-const Canvas = ({ app, scene, viewController, onCreate, device, platform, onDeviceChange, onPlatformChange, menu }) => (
+const Canvas = ({ app, scene, viewController, onCreate, device, platform, onDeviceChange, onPlatformChange, menu, activeControlId }) => (
     <>
         <DeviceSelector
             devices={[
@@ -24,7 +24,7 @@ const Canvas = ({ app, scene, viewController, onCreate, device, platform, onDevi
             platform={platform}
             controls={Controls}
         />
-        <Preview menu={menu} app={app} scene={scene} viewController={viewController} onCreate={onCreate} platform={platform} device={device} />
+        <Preview menu={menu} app={app} scene={scene} viewController={viewController} activeControlId={activeControlId} onCreate={onCreate} platform={platform} device={device} />
     </>
 );
 

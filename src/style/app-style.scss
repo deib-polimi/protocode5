@@ -431,22 +431,6 @@ body,
     box-shadow: 0 0 5px 5px #cc181e;
 }
 
-/*============ INNER CONTROL ============*/
-
-.inner-control {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.inner-control.active {
-    //border: dashed 1px #007aff;
-    border: dashed 1px #cc181e;
-    border-radius: 3px;
-}
-
 /*============ UI CONTROL ============*/
 
 .ui-phone-control {
@@ -454,6 +438,10 @@ body,
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     z-index: 3;
+    &.active {
+        border: dashed 2px #cc181e;
+        border-radius: 3px;
+    }
 }
 
 .ui-phone-control:hover {
