@@ -182,6 +182,7 @@ class SmartphoneEditorTemplate extends React.Component {
                                                         scene={scene}
                                                         onCreate={onCreate}
                                                         onEdit={(prop, value) => onEdit(UI_PHONE_VIEW_CONTROLLER, viewController.id, prop, value)}
+                                                        onDelete={() => onDelete(UI_PHONE_VIEW_CONTROLLER, viewController.id)}
                                                         onAlertAdd={() => onCreate(UI_PHONE_ELEMENT_ALERT_DIALOG, viewController.id)}
                                                         onProgressAdd={() => onCreate(UI_PHONE_ELEMENT_PROGRESS_DIALOG, viewController.id)}
                                                         onAsyncTaskAdd={() => onCreate(UI_PHONE_ELEMENT_ASYNC_TASK, viewController.id)}

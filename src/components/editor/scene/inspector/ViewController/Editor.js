@@ -1,14 +1,14 @@
 import React from 'react';
-import { Card, Tab, Nav } from 'react-bootstrap';
+import { Card, Tab, Nav, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faExclamationCircle, faCreditCard, faRandom } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faExclamationCircle, faCreditCard, faRandom, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import MainProperties from './MainProperties';
 import Async from './Async';
 import Alerts from './Alerts';
 import Progresses from './Progresses';
 import { BackLink } from '../utils/FormKit';
 
-const ViewControllerEditor = ({ match, viewController, scene, onCreate, onEdit, onAlertAdd, onProgressAdd, onAsyncTaskAdd }) => (
+const ViewControllerEditor = ({ match, viewController, scene, onCreate, onEdit, onAlertAdd, onProgressAdd, onAsyncTaskAdd, onDelete }) => (
     <>
         <Card style={{ width: '100%' }}>
             <Card.Header>
@@ -70,6 +70,11 @@ const ViewControllerEditor = ({ match, viewController, scene, onCreate, onEdit, 
                     </Tab.Content>
                 </Tab.Container>
             </Card.Body>
+            <Card.Footer>
+                <Button variant="light" onClick={() => onDelete()}>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                </Button>
+            </Card.Footer>
         </Card>
     </>
 );
