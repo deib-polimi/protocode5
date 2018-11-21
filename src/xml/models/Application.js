@@ -6,6 +6,11 @@ import MenuTransform from "./Menu";
 import SceneTransform from "./Scene";
 import ViewControllerTransform from "./ViewController";
 import WatchControllerTransform from "./WatchController";
+import TransformDataHandler from "./DataHandlers";
+import { PreferenceRecordsSelector } from "../../selectors/PreferenceRecord";
+import { EntitySelectorAll } from "../../selectors/Entity";
+import { CloudObjectSelectorAll } from "../../selectors/CloudObject";
+import { FileStorageRecordSelector } from "../../selectors/FileStorageRecord";
 
 function transform(state) {
     this.viewControllers = ViewControllerAll(state);
@@ -26,7 +31,13 @@ function transform(state) {
         appModel.setAttribute('name', this.name);
         appModel.setAttribute('companyIdentifier', this.companyIdentifier);
 
-        // appModel.appendChild(this.dataHandler.toXml(xmlDoc));
+        appModel.appendChild(TransformDataHandler(
+            state.dataHandlers,
+            PreferenceRecordsSelector(state),
+            FileStorageRecordSelector(state),
+            EntitySelectorAll(state),
+            CloudObjectSelectorAll(state)
+        ).toXml(xmlDoc));
 
         var viewControllers = this.viewControllers;
         var scenes = this.scenes.filter(s => s.valid);

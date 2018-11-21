@@ -51,3 +51,16 @@ export const WATCH_VOICE = 'watchVoiceMessages';
 
 export const WATCH_CLICK_LISTENER = 'watchClickListener';
 export const WATCH_NAVIGATION = 'watchNavigation';
+
+export const DATA_HANDLER = 'dataHandler';
+export const PREFERENCE_HANDLER = 'preferenceHandler';
+export const PREFERENCE_RECORD = 'preferenceRecords';
+export const STORAGE_HANDLER = 'storageHandler';
+export const STORAGE_RECORD = 'storageRecords';
+export const DATABASE_HANDLER = 'databaseHandler';
+export const DATABASE_ENTITY = 'entities';
+export const DATABASE_ATTRIBUTE = 'entityAttributes';
+export const DATABASE_RELATION = 'entityRelationships';
+export const CLOUD_HANDLER = 'cloudHandler';
+export const CLOUD_OBJECT = 'cloudObjects';
+export const CLOUD_ATTRIBUTE = 'objectAttributes';
