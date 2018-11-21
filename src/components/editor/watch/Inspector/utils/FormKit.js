@@ -1,1 +1,1 @@
-export * from '../../../common/FormKit';
+export * from '../../../../FormKit';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Row, Col, ButtonGroup, Button } from 'react-bootstrap';
 import ColorPicker from 'rc-color-picker';
 import 'rc-color-picker/assets/index.css';
-import SmartFormControl from '../../../utils/SmartChangeEvent';
+import SmartFormControl from '../utils/SmartChangeEvent';
 
 export const ControlText = ({ caption, value, onChange, ...others }) => (
     <Form.Group as={Row}>

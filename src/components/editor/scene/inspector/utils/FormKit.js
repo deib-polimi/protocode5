@@ -5,7 +5,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 
-export * from '../../../common/FormKit';
+export * from '../../../../FormKit';
 
 export const BackLink = ({ scene, viewController, ...others }) => {
     let link = '/editor/scenes';

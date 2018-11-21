@@ -128,3 +128,22 @@ export const WATCH_SWITCH = 'watch_switch';
 export const WATCH_VOICE = 'watch_voice';
 
 export const WATCH_CLICK_LISTENER = 'watch_click_listener';
+
+/* ============== DATA MODEL ======================= */
+export const TYPE_STRING = 'string';
+export const TYPE_INT = 'int';
+export const TYPE_LONG = 'long';
+export const TYPE_BOOLEAN = 'boolean';
+export const TYPE_FLOAT = 'float';
+export const TYPE_DOUBLE = 'double';
+export const TYPE_DATE = 'date';
+export const TYPE_REF = 'object';
+export const TYPE_REF_LIST = 'object_list';
+
+export const EXTENSION_TEXT = 'text';
+export const EXTENSION_IMAGE = 'img';
+export const EXTENSION_OTHER = 'other';
+
+export const CARDINALITY_1_N = '1:N';
+export const CARDINALITY_1_1 = '1:1';
+export const CARDINALITY_N_1 = 'N:1';

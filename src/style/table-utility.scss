@@ -1,0 +1,8 @@
+@for $i from 1 through 12 {
+    td, th{
+        &.col-#{$i} {
+            width: 100% / 12 * $i;
+        }
+    }
+}
+  

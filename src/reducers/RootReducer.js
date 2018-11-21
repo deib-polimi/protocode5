@@ -17,6 +17,14 @@ import MenuReducer from './Menu';
 import WatchControllerReducer from './WatchController';
 import WatchControlReducer from './WatchControl';
 import WatchClickListenerReducer from './WatchClickListener';
+import DataHandlersReducer from './DataHandlers';
+import PreferenceRecordReducer from './PreferenceRecord';
+import FileStorageRecordReducer from './FileStorageRecord';
+import EntityAttributeReducer from './EntityAttribute';
+import EntityReducer from './Entity';
+import EntityRelationReducer from './EntityRelation';
+import CloudObjectReducer from './CloudObject';
+import CloudObjectAttributeReducer from './CloudObjectAttribute';
 
 const RootReducer = combineReducers({
     application: ApplicationReducer,
@@ -37,7 +45,16 @@ const RootReducer = combineReducers({
 
     watchControllers: WatchControllerReducer,
     watchControls: WatchControlReducer,
-    watchClickListeners: WatchClickListenerReducer
+    watchClickListeners: WatchClickListenerReducer,
+
+    dataHandlers: DataHandlersReducer,
+    preferenceRecords: PreferenceRecordReducer,
+    fileStorageRecords: FileStorageRecordReducer,
+    entities: EntityReducer,
+    entityAttributes: EntityAttributeReducer,
+    entityRelations: EntityRelationReducer,
+    cloudObjects: CloudObjectReducer,
+    cloudObjectAttributes: CloudObjectAttributeReducer
 });
 
 export default RootReducer;

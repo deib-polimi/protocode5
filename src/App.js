@@ -5,6 +5,7 @@ import { Route } from 'react-router';
 import WelcomeComponent from './Welcome';
 import Editor from './components/editor/Editor';
 import About from './about/About';
+import DataModelEditor from './components/dataModel/Editor';
 
 class App extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
                 <Container fluid={true} id="main">
                     <Route exact path="/" component={WelcomeComponent} />
                     <Route path="/editor" component={Editor} />
+                    <Route path="/model" component={DataModelEditor} />
                     <Route path="/about" component={About} />
                 </Container>
             </>
