@@ -10,10 +10,10 @@ function transform(control) {
         constraint.setAttribute('uiPhoneControl', this._control.getRefPath(''));
         constraint.setAttribute('layoutEdge', this.side);
         constraint.setAttribute('withParent', this.refId === null);
-        if(!this.withParent) {
-            constraint.setAttribute('referenceElement', UiPhoneControlTransform(control._viewController, refElement).getRefPath(''));
+        if(this.refId !== null) {
+            constraint.setAttribute('referenceElement', UiPhoneControlTransform(control._viewController, control._controlChain, refElement).getRefPath(''));
         }
-        constraint.setAttribute('referenceLayoutEdge', this.refSide);
+        constraint.setAttribute('referenceLayoutEdge', this.refId !== null ? this.refSide : this.side);
 
         return constraint;
     }

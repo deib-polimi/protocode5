@@ -12,7 +12,7 @@ function transform() {
 		
 		if (this.navigations) {
 			this.navigations.forEach(nav => {
-				elem.appendChild(NavigationTransform(this, nav).toXml(xmlDoc));
+				elem.appendChild(NavigationTransform(this, this._viewController._application, nav).toXml(xmlDoc));
 			});
 		}
 

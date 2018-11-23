@@ -15,7 +15,7 @@ function transform() {
 
         var navigations = this.navigations;
         navigations.forEach(nav => {
-            button.appendChild(NavigationTransform(this, nav).toXml(xmlDoc));
+            button.appendChild(NavigationTransform(this, this._viewController._application, nav).toXml(xmlDoc));
         });
 
         return button;

@@ -1,7 +1,7 @@
 import { MENU, MENU_ITEM } from "../XmlNames";
 import NavigationTransform from "./Navigation";
 
-function itemTransform() {
+function itemTransform(application) {
     this.toXml = xmlDoc => {
         var elem = xmlDoc.createElement(MENU_ITEM);
 
@@ -11,7 +11,7 @@ function itemTransform() {
         var navigation = this.navigation;
 
         if (navigation) {
-            elem.appendChild(NavigationTransform(null, navigation).toXml(xmlDoc));
+            elem.appendChild(NavigationTransform(null, application, navigation).toXml(xmlDoc));
         }
 
         return elem;
@@ -27,7 +27,7 @@ function transform(application, items) {
 
         this._items.forEach(item => {
 
-            elem.appendChild(itemTransform.call(item).toXml(xmlDoc));
+            elem.appendChild(itemTransform.call(item, this._application).toXml(xmlDoc));
         });
 
         return elem;

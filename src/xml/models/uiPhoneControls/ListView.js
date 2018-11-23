@@ -13,7 +13,7 @@ function transform() {
 
         var navigations = this.navigations;
         navigations.forEach(nav => {
-            elem.appendChild(NavigationTransform(this, nav).toXml(xmlDoc));
+            elem.appendChild(NavigationTransform(this, this._viewController._application, nav).toXml(xmlDoc));
         });
 
         this.listViewCells.forEach(item => {

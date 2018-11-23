@@ -46,6 +46,7 @@ function transform(viewController) {
             return null;
         }
     }
+    return this;
 }
 
 export default function ControlChainTransform(viewController, raw) {

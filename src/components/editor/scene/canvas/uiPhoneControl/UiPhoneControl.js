@@ -70,7 +70,7 @@ const _UiPhoneControl = ({ scene, viewController, control, style, platform, onCr
         <Route render={({ history }) => {
             return (
                 <div className={`ui-phone-control ${isActive ? 'active' : ''}`} style={mystyle} onClick={e => clickHandler(history, e)}>
-                    <Content scene={scene} viewController={viewController} control={control} platform={platform} onCreate={onCreate} />
+                    <Content scene={scene} viewController={viewController} control={control} platform={platform} onCreate={onCreate} width={style.width} height={style.height} />
                 </div>
             );
         }} />

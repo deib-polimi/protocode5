@@ -56,6 +56,7 @@ export default class ControlChainEditor extends React.Component {
         const { control, viewController, onEdit, onControlEdit, onDelete } = this.props;
         let chain = control;
         let members = viewController.controls.filter(c => c.controlChain && c.controlChain.id === chain.id);
+        let isSomeMemberConstrained = members.some(member => member.constraints.length > 0);
         members.sort((a, b) => a.controlChainPosition - b.controlChainPosition);
         return (
             <Card className="w-100">
@@ -86,11 +87,16 @@ export default class ControlChainEditor extends React.Component {
                         </Nav>
                         <Tab.Content>
                             <Tab.Pane eventKey="main">
+                                {isSomeMemberConstrained && 
+                                    <Alert variant="warning">
+                                        <p>Some members have constraints on them, you won't be able to change the axis of the chain unless you remove those constraints</p>
+                                    </Alert>
+                                }
                                 <Form>
                                     <Form.Group as={Row}>
                                         <Form.Label column sm={4}>Axis</Form.Label>
                                         <Col sm={8}>
-                                            <SmartFormControl as="select" value={chain.axis} onChange={value => onEdit('axis', value)}>
+                                            <SmartFormControl as="select" value={chain.axis} onChange={value => onEdit('axis', value)} disabled={isSomeMemberConstrained}>
                                                 <option value={CONTROL_CHAIN_AXIS_HORIZONTAL}>Horizontal (X)</option>
                                                 <option value={CONTROL_CHAIN_AXIS_VERTICAL}>Vertical (Y)</option>
                                             </SmartFormControl>

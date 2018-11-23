@@ -19,6 +19,7 @@ function transform() {
         updatedPath = this._viewController.getRefPath(updatedPath);
         return updatedPath;
     }
+    return this;
 }
 
 export default function PhotocameraControllerTransform(control) {

@@ -16,7 +16,7 @@ function transform(application) {
         if (this.layout[SMARTPHONE].type === SCENE_MULTI_VC) {
             scene.appendChild(ViewControllerTransform(this._application, this, this.layout[SMARTPHONE]).toXml(xmlDoc));
         }
-        if (this.layout[TABLET] === SCENE_MULTI_VC) {
+        if (this.layout[TABLET].type === SCENE_MULTI_VC) {
             scene.appendChild(ViewControllerTransform(this._application, this, this.layout[TABLET]).toXml(xmlDoc));
         }
         // SMARTPHONE or TABLET here does not matter, they refer to the same children

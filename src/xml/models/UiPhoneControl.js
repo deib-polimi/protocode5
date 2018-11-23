@@ -84,11 +84,11 @@ function transform(viewController, controlChain) {
                 mustExportDimensionConstraints = true;
             }
             if (this.widthMode === MEASURE_MODE_PERCENT) {
-                dimensionConstraints.setAttribute('widthPercent', this.width);
+                dimensionConstraints.setAttribute('widthPercent', this.width / 100);
                 mustExportDimensionConstraints = true;
             }
             if (this.heightMode === MEASURE_MODE_PERCENT) {
-                dimensionConstraints.setAttribute('heightPercent', this.height);
+                dimensionConstraints.setAttribute('heightPercent', this.height / 100);
                 mustExportDimensionConstraints = true;
             }
             if (mustExportDimensionConstraints) {
@@ -117,7 +117,6 @@ function transform(viewController, controlChain) {
 
 export default function UiPhoneControlTransform(viewController, controlChain, raw) {
     let control = transform.call(raw, viewController, controlChain);
-    console.log(UI_PHONE_CONTROL_BUTTON);
     switch (control.uiPhoneControlType) {
         case UI_PHONE_CONTROL_AUDIO_PLAYER: return AudioPlayerTransform(control);
         case UI_PHONE_CONTROL_AUDIO_RECORDER: return AudioRecorderTransform(control);

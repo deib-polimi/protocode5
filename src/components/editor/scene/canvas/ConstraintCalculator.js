@@ -252,7 +252,8 @@ function solveVerticalChain(reactChildren, parentWidth, parentHeight, otherStyle
         });
         let bias = head.props.constraintChainBias;
         if (bias === undefined || bias < 0.0 || bias > 1.0) bias = 0.5;
-        const tops = solvePackedChain(heights, parentHeight, bias);
+        const spacing = head.props.constraintSpacing || 0;
+        const tops = solvePackedChain(heights, parentHeight, bias, spacing);
         const out = {};
         reactChildren.forEach((child, i) => {
             out[child.props.id] = {
@@ -269,7 +270,8 @@ function solveVerticalChain(reactChildren, parentWidth, parentHeight, otherStyle
                 w = 1;
             return w;
         });
-        const heights = solveWeightedChain(weights, parentHeight);
+        const spacing = head.props.constraintSpacing || 0;
+        const heights = solveWeightedChain(weights, parentHeight, spacing);
         let acc = 0;
         const out = {};
         reactChildren.forEach((child, i) => {
@@ -277,7 +279,7 @@ function solveVerticalChain(reactChildren, parentWidth, parentHeight, otherStyle
                 height: heights[i] - marginTop(child) - marginBottom(child),
                 top: acc + marginTop(child)
             };
-            acc += heights[i];
+            acc += heights[i] + spacing;
         });
         return out;
     }
@@ -493,10 +495,9 @@ class ConstraintCalculatorImpl {
         });
     }
 
-    deleteGroup(groupKey, softDelete = false) {
+    deleteGroup(groupKey) {
         this.pending[groupKey].forEach(child => {
             delete this.computed[child.props.id];
-            if (!softDelete) delete this.events[child.props.id];
         });
         delete this.pending[groupKey];
     }

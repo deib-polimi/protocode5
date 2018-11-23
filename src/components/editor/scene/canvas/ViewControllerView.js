@@ -64,7 +64,7 @@ class ViewControllerView extends Component {
             className = this.props.className;
         }
         return (
-            <div style={{position: 'relative'}}>
+            <div style={{position: 'relative', width: `${width}px`, height: `${height}px`}}>
                 <div
                     className={`${className} ${this.state.draggingOver ? 'dragging-over' : ''}`}
                     style={vcStyle}

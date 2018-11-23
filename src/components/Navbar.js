@@ -34,6 +34,13 @@ const MainComponent = ({ app, model, onCreate, onDelete }) => {
                                     </LinkContainer>
                                 </Nav.Item>
                             }
+                            {app != null &&
+                                <Nav.Item>
+                                    <LinkContainer to="/manifest">
+                                        <Nav.Link>Manifest Editor</Nav.Link>
+                                    </LinkContainer>
+                                </Nav.Item>
+                            }
                             <Nav.Item>
                                 <LinkContainer to="/about">
                                     <Nav.Link href="#">About</Nav.Link>
