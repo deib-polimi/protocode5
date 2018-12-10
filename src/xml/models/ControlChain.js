@@ -28,7 +28,7 @@ function transform(viewController) {
         return updatedPath;
     }
     this.getIndex = member => {
-        return this._members.findIndex(control => control.id === member.id) || -1;
+        return this._members.findIndex(control => control.id === member.id);
     }
     this.getPrecedentControl = member => {
         let idx = this.getIndex(member);

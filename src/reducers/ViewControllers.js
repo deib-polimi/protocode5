@@ -21,14 +21,14 @@ function ViewControllerReducer(state = InitialState, action) {
             return DataArchive.Insert(state,
                 {
                     id: action.sceneId + SMARTPHONE,
-                    name: 'Parent ViewController (smartphone)',
+                    name: 'Parent ViewController smartphone',
                     scene: action.sceneId,
                     type: SCENE_SINGLE_VC,
                     backgroundColor: '#ffffff',
                     backgroundImage: ''
                 }, {
                     id: action.sceneId + TABLET,
-                    name: 'Parent ViewController (tablet)',
+                    name: 'Parent ViewController tablet',
                     scene: action.sceneId,
                     type: SCENE_SINGLE_VC,
                     backgroundColor: '#ffffff',

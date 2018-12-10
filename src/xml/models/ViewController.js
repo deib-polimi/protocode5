@@ -16,7 +16,7 @@ function transform(application, scene) {
             viewController = xmlDoc.createElement(VIEW_CONTROLLER);
         }
         viewController.setAttribute('id', this.id);
-        viewController.setAttribute('name', this.name);
+        viewController.setAttribute('name', this.name.replace(/[^a-zA-Z0-9_ ]/g, ''));
         viewController.setAttribute('backgroundColor', this.backgroundColor);
         viewController.setAttribute('backgroundImage', this.backgroundImage);
 
@@ -37,7 +37,11 @@ function transform(application, scene) {
         });
 
         this.controls.filter(control => control.valid !== false).forEach(uiPhoneControl => {
-            viewController.appendChild(UiPhoneControlTransform(this, null, uiPhoneControl).toXml(xmlDoc));
+            if (uiPhoneControl.controlChain) {
+                viewController.appendChild(UiPhoneControlTransform(this, ControlChainTransform(this, uiPhoneControl.controlChain), uiPhoneControl).toXml(xmlDoc));
+            } else {
+                viewController.appendChild(UiPhoneControlTransform(this, null, uiPhoneControl).toXml(xmlDoc));
+            }
         });
 
         return viewController;
