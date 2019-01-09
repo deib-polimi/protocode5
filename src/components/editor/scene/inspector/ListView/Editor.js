@@ -1,4 +1,4 @@
-import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt, faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt, faPlus, faSave, faTimes, faSitemap, faTable } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Button, Card, Form, Nav, Tab, ButtonGroup, ListGroup, Col, InputGroup, Row } from 'react-bootstrap';
@@ -10,6 +10,8 @@ import { ControlText, ControlCustomColor, BackLink } from '../utils/FormKit';
 import SmartFormControl from '../../../../../utils/SmartChangeEvent';
 import { Link } from 'react-router-dom';
 import NavigationEditor from '../partials/NavigationEditor';
+import ModelTab from '../UiPhoneControl/ModelTab';
+import ListCellModelEditor from './EditorModelCell';
 
 class ListViewEditor extends React.Component {
     constructor(props) {
@@ -43,7 +45,7 @@ class ListViewEditor extends React.Component {
         });
     }
     render() {
-        const { control, viewController, scene, onCreate, onEdit, onDelete, onNavigationCreate, onNavigationEdit, onNavigationDelete, scenes } = this.props;
+        const { control, viewController, scene, onCreate, onEdit, onDelete, onNavigationCreate, onNavigationEdit, onNavigationDelete, scenes, onConnect, onDisconnect } = this.props;
         let listView = control;
         let cellLinkBase = '';
         if (scene) {
@@ -87,6 +89,16 @@ class ListViewEditor extends React.Component {
                             <Nav.Item>
                                 <Nav.Link eventKey="spacing">
                                     <FontAwesomeIcon icon={faIndent} />
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="model">
+                                    <FontAwesomeIcon icon={faSitemap} />
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="cellmodel">
+                                    <FontAwesomeIcon icon={faTable} />
                                 </Nav.Link>
                             </Nav.Item>
                         </Nav>
@@ -179,6 +191,25 @@ class ListViewEditor extends React.Component {
                             </Tab.Pane>
                             <Tab.Pane eventKey="spacing">
                                 <SpacingTab uiPhoneControl={listView} onEdit={onEdit} enableMargin={true} enablePadding={true} />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="model">
+                                <ModelTab
+                                    scene={scene}
+                                    viewController={viewController}
+                                    uiPhoneControl={control}
+                                    onConnect={onConnect}
+                                    onDisconnect={onDisconnect}
+                                    properties={['items']}
+                                />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="cellmodel">
+                                <ListCellModelEditor
+                                    scene={scene}
+                                    viewController={viewController}
+                                    list={listView}
+                                    onConnect={onConnect}
+                                    onDisconnect={onDisconnect}
+                                />
                             </Tab.Pane>
                         </Tab.Content>
                     </Tab.Container>

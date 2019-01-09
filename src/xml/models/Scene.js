@@ -1,6 +1,7 @@
 import { SCENE, CHILD_VIEW_CONTROLLER } from "../XmlNames";
 import { TABLET, SMARTPHONE, SCENE_MULTI_VC } from "../../Constants";
 import ViewControllerTransform from "./ViewController";
+import AdapterBindingTransform from "./AdapterBinding";
 
 function transform(application) {
     this.xmlName = SCENE;
@@ -28,11 +29,15 @@ function transform(application) {
                 vcInfo.setAttribute('viewController', vc.getRefPath(''));
                 scene.appendChild(vcInfo);
             });
-
+        if (this.adapters && this.adapters.length) {
+            this.adapters.forEach(adapter => {
+                scene.appendChild(AdapterBindingTransform(this, adapter).toXml(xmlDoc));
+            })
+        }
         return scene;
     }
     this.getRefPath = path => {
-        return '//@' + this.xmlName + '[id=\'' + this.id + '\']' + path;
+        return '//@' + this.xmlName + '[id=\'' + this.id + '\']' + (path || '');
     }
     return this;
 }

@@ -25,6 +25,8 @@ import EntityReducer from './Entity';
 import EntityRelationReducer from './EntityRelation';
 import CloudObjectReducer from './CloudObject';
 import CloudObjectAttributeReducer from './CloudObjectAttribute';
+import AdapterBindingReducer from './AdapterBinding';
+import ModelConnectorReducer from './ModelConnector';
 
 const RootReducer = combineReducers({
     application: ApplicationReducer,
@@ -54,7 +56,10 @@ const RootReducer = combineReducers({
     entityAttributes: EntityAttributeReducer,
     entityRelations: EntityRelationReducer,
     cloudObjects: CloudObjectReducer,
-    cloudObjectAttributes: CloudObjectAttributeReducer
+    cloudObjectAttributes: CloudObjectAttributeReducer,
+
+    adapterBindings: AdapterBindingReducer,
+    modelConnectors: ModelConnectorReducer
 });
 
 export default RootReducer;

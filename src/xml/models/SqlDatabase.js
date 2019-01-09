@@ -1,4 +1,4 @@
-import { DATABASE_HANDLER, DATABASE_ENTITY, DATABASE_ATTRIBUTE, DATABASE_RELATION } from "../XmlNames";
+import { DATABASE_HANDLER, DATABASE_ENTITY, DATABASE_ATTRIBUTE, DATABASE_RELATION, DATA_HANDLER } from "../XmlNames";
 
 function attributeTransform() {
     this.toXml = xmlDoc => {
@@ -17,7 +17,7 @@ function relationTransform() {
         let entityRelation = xmlDoc.createElement(DATABASE_RELATION);
 
         entityRelation.setAttribute('name', this.name);
-        entityRelation.setAttribute('destination', this.toEntityId);
+        entityRelation.setAttribute('destination', this.targetEntity.name);
         entityRelation.setAttribute('type', this.cardinality);
 
         return entityRelation;
@@ -43,6 +43,9 @@ function entityTransform() {
 
         return entity;
     }
+    this.getRefPath = () => {
+        return `//@${DATA_HANDLER}/@${DATABASE_HANDLER}/@${DATABASE_ENTITY}[name='${this.name}']`;
+    }
     return this;
 }
 
@@ -57,6 +60,10 @@ function transform() {
         return dbHandler;
     }
     return this;
+}
+
+export function EntityTransform(entity) {
+    return entityTransform.call(entity);
 }
 
 export default function SqlDatabaseTransform(entities) {

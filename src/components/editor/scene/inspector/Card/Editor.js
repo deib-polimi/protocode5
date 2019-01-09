@@ -1,12 +1,13 @@
-import { faArrowsAlt, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faPencilAlt, faTrashAlt, faSitemap } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Button, Card, Form, Nav, Tab, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { UI_PHONE_CONTROL_CONSTRAINT, CONTROL_CHAIN } from '../../../../../Constants';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import { ControlText, BackLink } from '../utils/FormKit';
+import ModelTab from '../UiPhoneControl/ModelTab';
 
-const CardEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete }) => {
+const CardEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete, onConnect, onDisconnect }) => {
     const card = control;
     return (
         <Card className="w-100">
@@ -25,6 +26,11 @@ const CardEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete
                         <Nav.Item>
                             <Nav.Link eventKey="position">
                                 <FontAwesomeIcon icon={faArrowsAlt} />
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="model">
+                                <FontAwesomeIcon icon={faSitemap} />
                             </Nav.Link>
                         </Nav.Item>
                     </Nav>
@@ -62,6 +68,25 @@ const CardEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete
                                 uiPhoneControl={card}
                                 onEdit={onEdit}
                                 onCreateConstraint={(...args) => onCreate(UI_PHONE_CONTROL_CONSTRAINT, ...args)}
+                            />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="model">
+                            <PositionTab
+                                scene={scene}
+                                viewController={viewController}
+                                uiPhoneControl={card}
+                                onEdit={onEdit}
+                                onCreateConstraint={(...args) => onCreate(UI_PHONE_CONTROL_CONSTRAINT, ...args)}
+                            />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="model">
+                            <ModelTab
+                                scene={scene}
+                                viewController={viewController}
+                                uiPhoneControl={control}
+                                onConnect={onConnect}
+                                onDisconnect={onDisconnect}
+                                properties={['title', 'subtitle']}
                             />
                         </Tab.Pane>
                     </Tab.Content>

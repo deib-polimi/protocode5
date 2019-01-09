@@ -31,6 +31,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import SceneReport from './report/Scene';
 import ViewControllerReport from './report/ViewController';
+import { createModelConnector, deleteModelConnector } from '../../../actions/ModelConnector';
 
 /**
  * props = { match, app, scenes, viewControllers, scene, viewController, onCreate, onEdit, onDelete }
@@ -58,7 +59,7 @@ class SmartphoneEditorTemplate extends React.Component {
         });
     }
     render() {
-        let { match, app, scenes, viewControllers, scene, viewController, onCreate, onEdit, onDelete, menu } = this.props;
+        let { match, app, scenes, viewControllers, scene, viewController, onCreate, onEdit, onDelete, menu, onConnect, onDisconnect } = this.props;
         return (
             <>
                 {(scene !== null && viewController === null) &&
@@ -103,6 +104,8 @@ class SmartphoneEditorTemplate extends React.Component {
                                                 onCreate={onCreate}
                                                 onEdit={onEdit}
                                                 onDelete={onDelete}
+                                                onConnect={onConnect}
+                                                onDisconnect={onDisconnect}
                                                 menu={menu}
                                             />
                                         )} />
@@ -117,6 +120,8 @@ class SmartphoneEditorTemplate extends React.Component {
                                                 onCreate={onCreate}
                                                 onEdit={onEdit}
                                                 onDelete={onDelete}
+                                                onConnect={onConnect}
+                                                onDisconnect={onDisconnect}
                                                 menu={menu}
                                             />
                                         )} />
@@ -131,6 +136,8 @@ class SmartphoneEditorTemplate extends React.Component {
                                                 onCreate={onCreate}
                                                 onEdit={onEdit}
                                                 onDelete={onDelete}
+                                                onConnect={onConnect}
+                                                onDisconnect={onDisconnect}
                                             />
                                         )} />
                                         <Route exact path={`${match.path}/${UI_PHONE_CONTROL_LIST_VIEW}/:controlId/cell/:cellId`} render={props => (
@@ -144,6 +151,8 @@ class SmartphoneEditorTemplate extends React.Component {
                                                 onCreate={onCreate}
                                                 onEdit={onEdit}
                                                 onDelete={onDelete}
+                                                onConnect={onConnect}
+                                                onDisconnect={onDisconnect}
                                                 listId={props.match.params.controlId}
                                             />
                                         )} />
@@ -158,6 +167,8 @@ class SmartphoneEditorTemplate extends React.Component {
                                                 onCreate={onCreate}
                                                 onEdit={onEdit}
                                                 onDelete={onDelete}
+                                                onConnect={onConnect}
+                                                onDisconnect={onDisconnect}
                                                 gridId={props.match.params.controlId}
                                             />
                                         )} />
@@ -405,6 +416,12 @@ const mapDispatchToProps = dispatch => {
             if (deletors[itemClass]) {
                 dispatch(deletors[itemClass](itemId));
             }
+        },
+        onConnect: (sceneId, viewControllerId, controlId, adapterId, keypath, property) => {
+            dispatch(createModelConnector(sceneId, viewControllerId, controlId, adapterId, keypath, property))
+        },
+        onDisconnect: connectorId => {
+            dispatch(deleteModelConnector(connectorId));
         }
     }
 }

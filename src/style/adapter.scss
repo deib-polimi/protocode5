@@ -1,0 +1,56 @@
+.adapter-binding {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    display: inline-block;
+
+    input {
+        margin-top: 5px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid black;
+        color: black;
+        &::placeholder {
+            opacity: 0.5;
+            color: #000;
+        }
+    }
+
+    &.adapter-binding-file {
+        background-color: #F00;
+        &::before {
+            content: 'File: '
+        }
+    }
+    &.adapter-binding-preference {
+        background-color: #0F0;
+        &::before {
+            content: 'Preference: '
+        }
+    }
+    &.adapter-binding-cloud {
+        background-color: #00F;
+        &::before {
+            content: 'Cloud object: '
+        }
+    }
+    &.adapter-binding-entity {
+        background-color: #FF0;
+        &::before {
+            content: 'Entity: '
+        }
+    }
+    &.adapter-binding-cloud.adapter-binding-list {
+        background-color: #00F;
+        &::before {
+            content: 'List of cloud objects: '
+        }
+    }
+    &.adapter-binding-entity.adapter-binding-list {
+        background-color: #FF0;
+        &::before {
+            content: 'List of entities: '
+        }
+    }
+}

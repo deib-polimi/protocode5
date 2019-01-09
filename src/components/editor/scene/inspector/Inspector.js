@@ -120,7 +120,7 @@ const Requires = {
     }
 }
 
-const Inspector = ({ scenes, scene, viewController, controlType, controlId, onCreate, onEdit, onDelete, ...others }) => {
+const Inspector = ({ scenes, scene, viewController, controlType, controlId, onCreate, onEdit, onDelete, onConnect, onDisconnect, ...others }) => {
     let Editor = Editors[controlType];
     let control = null;
     if (Getters[controlType]) {
@@ -142,6 +142,8 @@ const Inspector = ({ scenes, scene, viewController, controlType, controlId, onCr
                 onCreate={onCreate}
                 onEdit={(prop, value) => onEdit(controlType, controlId, prop, value)}
                 onDelete={() => onDelete(controlType, controlId)}
+                onConnect={onConnect}
+                onDisconnect={onDisconnect}
                 onNavigationCreate={(...args) => onCreate(UI_PHONE_DYNAMICS_NAVIGATION, ...args)}
                 onNavigationEdit={(...args) => onEdit(UI_PHONE_DYNAMICS_NAVIGATION, ...args)}
                 onNavigationDelete={(...args) => onDelete(UI_PHONE_DYNAMICS_NAVIGATION, ...args)}

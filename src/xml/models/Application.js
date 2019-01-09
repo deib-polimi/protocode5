@@ -1,16 +1,16 @@
+import { CloudObjectSelectorAll } from "../../selectors/CloudObject";
+import { EntitySelectorAll } from "../../selectors/Entity";
+import { FileStorageRecordSelectorAll } from "../../selectors/FileStorageRecord";
 import { MenuItemAll } from "../../selectors/Menu";
+import { PreferenceRecordsSelector } from "../../selectors/PreferenceRecord";
 import { SceneAll } from "../../selectors/Scene";
 import { ViewControllerAll } from "../../selectors/ViewController";
 import { WatchControllerSelectorAll } from "../../selectors/WatchController";
+import TransformDataHandler from "./DataHandlers";
 import MenuTransform from "./Menu";
 import SceneTransform from "./Scene";
 import ViewControllerTransform from "./ViewController";
 import WatchControllerTransform from "./WatchController";
-import TransformDataHandler from "./DataHandlers";
-import { PreferenceRecordsSelector } from "../../selectors/PreferenceRecord";
-import { EntitySelectorAll } from "../../selectors/Entity";
-import { CloudObjectSelectorAll } from "../../selectors/CloudObject";
-import { FileStorageRecordSelector } from "../../selectors/FileStorageRecord";
 
 function transform(state) {
     this.viewControllers = ViewControllerAll(state);
@@ -34,7 +34,7 @@ function transform(state) {
         appModel.appendChild(TransformDataHandler(
             state.dataHandlers,
             PreferenceRecordsSelector(state),
-            FileStorageRecordSelector(state),
+            FileStorageRecordSelectorAll(state),
             EntitySelectorAll(state),
             CloudObjectSelectorAll(state)
         ).toXml(xmlDoc));

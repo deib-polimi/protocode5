@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileStorageRecordSelector } from '../../../selectors/FileStorageRecord';
+import { FileStorageRecordSelectorAll } from '../../../selectors/FileStorageRecord';
 import { enableFileStorage, disableFileStorage } from '../../../actions/DataHandlers';
 import { createFileStorageRecord, deleteFileStorageRecord } from '../../../actions/FileStorageRecord';
 import { EXTENSION_TEXT, EXTENSION_IMAGE, EXTENSION_OTHER } from '../../../Constants'; import { Card, Button } from 'react-bootstrap';
@@ -155,7 +155,7 @@ class FileStorageEditor extends React.Component {
 const mapStateToProps = state => {
     return {
         enabled: state.dataHandlers.files,
-        files: FileStorageRecordSelector(state)
+        files: FileStorageRecordSelectorAll(state)
     }
 }
 

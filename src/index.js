@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 import { persistReducer, persistStore } from 'redux-persist';
-import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 import storage from 'redux-persist/lib/storage';
 import RootReducer from './reducers/RootReducer';
 import Root from './Root';
@@ -12,7 +11,6 @@ import './style/index.scss';
 const persistConfig = {
     key: 'protocode-root',
     storage,
-    stateReconciler: hardSet
 }
 
 const persistedReducer = persistReducer(persistConfig, RootReducer);

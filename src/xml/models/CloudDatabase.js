@@ -1,4 +1,4 @@
-import { CLOUD_HANDLER, CLOUD_OBJECT, CLOUD_ATTRIBUTE } from "../XmlNames";
+import { CLOUD_HANDLER, CLOUD_OBJECT, CLOUD_ATTRIBUTE, DATA_HANDLER } from "../XmlNames";
 import { TYPE_REF, TYPE_REF_LIST } from "../../Constants";
 
 function attributeTransform() {
@@ -29,6 +29,9 @@ function objectTransform() {
 
         return cloudObject;
     }
+    this.getRefPath = () => {
+        return `//@${DATA_HANDLER}/@${CLOUD_HANDLER}/@${CLOUD_OBJECT}[name='${this.name}']`;
+    }
     return this;
 }
 
@@ -43,6 +46,10 @@ function transform() {
         return cloudHandler;
     }
     return this;
+}
+
+export function CloudObjectTransform(object) {
+    return transform.call(object);
 }
 
 export default function CloudDatabaseTransform(objects) {

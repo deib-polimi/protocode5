@@ -1,4 +1,4 @@
-import { PREFERENCE_RECORD, PREFERENCE_HANDLER } from "../XmlNames";
+import { PREFERENCE_RECORD, PREFERENCE_HANDLER, DATA_HANDLER } from "../XmlNames";
 
 function itemTransform() {
     this.toXml = xmlDoc => {
@@ -9,6 +9,9 @@ function itemTransform() {
         record.setAttribute('type', this.type);
 
         return record;
+    }
+    this.getRefPath = () => {
+        return `//@${DATA_HANDLER}/@${PREFERENCE_HANDLER}/@${PREFERENCE_RECORD}[key='${this.key}']`;
     }
     return this;
 }
@@ -24,6 +27,10 @@ function transform() {
         return elem;
     }
     return this;
+}
+
+export function DefaultPreferenceRecordTransform(prefRecord) {
+    return itemTransform.call(prefRecord);
 }
 
 export default function DefaultPreferencesTransform(defaultPreferences) {

@@ -6,6 +6,7 @@ import GridViewCellSelector from './GridViewCell';
 import SourceTypeSelector from './SourceType';
 import { ControlChainSelector } from './ControlChain';
 import NavigationSelector from './Navigation';
+import { ModelConnectorSelector } from './ModelConnector';
 
 function findControls(state, viewControllerId) {
     return DataArchive.Extract(state.uiPhoneControls, 'viewControllerId', viewControllerId);
@@ -16,7 +17,8 @@ function addContraints(state, controls) {
         .map(control => {
             return {
                 ...control,
-                constraints: ConstraintSelector(state, control.id)
+                constraints: ConstraintSelector(state, control.id),
+                modelConnectors: ModelConnectorSelector(state, control.id)
             }
         })
         .map(control => {

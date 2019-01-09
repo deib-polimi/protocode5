@@ -7,6 +7,7 @@ import Editor from './components/editor/Editor';
 import About from './about/About';
 import DataModelEditor from './components/dataModel/Editor';
 import ManifestEditor from './components/manifest/Editor';
+import AdapterEditor from './components/modelAdapter/Editor';
 
 class App extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class App extends Component {
                     <Route exact path="/" component={WelcomeComponent} />
                     <Route path="/editor" component={Editor} />
                     <Route path="/model" component={DataModelEditor} />
+                    <Route path="/adapter" component={AdapterEditor} />
                     <Route path="/manifest" component={ManifestEditor} />
                     <Route path="/about" component={About} />
                 </Container>

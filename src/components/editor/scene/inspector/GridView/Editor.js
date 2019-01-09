@@ -1,4 +1,4 @@
-import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faPlus, faSave, faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faPlus, faSave, faTimes, faTrashAlt, faSitemap, faTable } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Button, ButtonGroup, Card, Form, ListGroup, Nav, Tab, Col, InputGroup, Row } from 'react-bootstrap';
@@ -10,6 +10,8 @@ import SpacingTab from '../UiPhoneControl/SpacingTab';
 import { ControlCustomColor, ControlText, BackLink } from '../utils/FormKit';
 import { Link } from 'react-router-dom';
 import NavigationEditor from '../partials/NavigationEditor';
+import ModelTab from '../UiPhoneControl/ModelTab';
+import GridCellModelEditor from './EditorModelCell';
 
 class GridViewEditor extends React.Component {
     constructor(props) {
@@ -43,7 +45,7 @@ class GridViewEditor extends React.Component {
         });
     }
     render() {
-        const { control, viewController, scene, onCreate, onEdit, onDelete, onNavigationCreate, onNavigationEdit, onNavigationDelete, scenes } = this.props;
+        const { control, viewController, scene, onCreate, onEdit, onDelete, onNavigationCreate, onNavigationEdit, onNavigationDelete, scenes, onConnect, onDisconnect } = this.props;
         let gridView = control;
         let cellLinkBase = '';
         if (scene) {
@@ -87,6 +89,16 @@ class GridViewEditor extends React.Component {
                             <Nav.Item>
                                 <Nav.Link eventKey="spacing">
                                     <FontAwesomeIcon icon={faIndent} />
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="model">
+                                    <FontAwesomeIcon icon={faSitemap} />
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="cellmodel">
+                                    <FontAwesomeIcon icon={faTable} />
                                 </Nav.Link>
                             </Nav.Item>
                         </Nav>
@@ -179,6 +191,25 @@ class GridViewEditor extends React.Component {
                             </Tab.Pane>
                             <Tab.Pane eventKey="spacing">
                                 <SpacingTab uiPhoneControl={gridView} onEdit={onEdit} enableMargin={true} enablePadding={true} />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="model">
+                                <ModelTab
+                                    scene={scene}
+                                    viewController={viewController}
+                                    uiPhoneControl={control}
+                                    onConnect={onConnect}
+                                    onDisconnect={onDisconnect}
+                                    properties={['items']}
+                                />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="cellmodel">
+                                <GridCellModelEditor
+                                    scene={scene}
+                                    viewController={viewController}
+                                    grid={gridView}
+                                    onConnect={onConnect}
+                                    onDisconnect={onDisconnect}
+                                />
                             </Tab.Pane>
                         </Tab.Content>
                     </Tab.Container>

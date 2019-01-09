@@ -144,6 +144,12 @@ export const EXTENSION_TEXT = 'text';
 export const EXTENSION_IMAGE = 'img';
 export const EXTENSION_OTHER = 'other';
 
-export const CARDINALITY_1_N = '1:N';
-export const CARDINALITY_1_1 = '1:1';
-export const CARDINALITY_N_1 = 'N:1';
+export const CARDINALITY_1_N = '1 : N';
+export const CARDINALITY_1_1 = '1 : 1';
+export const CARDINALITY_N_1 = 'N : 1';
+
+/* ============== MODEL ADAPTER ================== */
+export const FILESTORAGE = 'file';
+export const ENTITY = 'entity';
+export const CLOUD_OBJECT = 'cloud';
+export const PREFERENCE = 'preference';

@@ -20,6 +20,7 @@ import VideoViewTransform from "./uiPhoneControls/VideoView";
 import VideocameraControllerTransform from "./uiPhoneControls/VideocameraController";
 import ImageViewTransform from "./uiPhoneControls/ImageView";
 import WebViewTransform from "./uiPhoneControls/WebView";
+import ModelConnectorTransform from "./ModelConnector";
 
 function transform(viewController, controlChain) {
     this._viewController = viewController;
@@ -44,10 +45,10 @@ function transform(viewController, controlChain) {
             let prev = controlChain.getPrecedentControl(this);
             let next = controlChain.getFollowingControl(this);
             if (prev) {
-                xmlElem.setAttribute('precedentInChain', prev.getRefPath(''));
+                xmlElem.setAttribute('precedentInChain', UiPhoneControlTransform(this._viewController, this._controlChain, prev).getRefPath(''));
             }
             if (next) {
-                xmlElem.setAttribute('followingInChain', next.getRefPath(''));
+                xmlElem.setAttribute('followingInChain', UiPhoneControlTransform(this._viewController, this._controlChain, next).getRefPath(''));
             }
             if (controlChain.type === CONTROL_CHAIN_TYPE_WEIGHTED) {
                 xmlElem.setAttribute('weight', this.controlChainWeight);
@@ -98,6 +99,12 @@ function transform(viewController, controlChain) {
             constraints.forEach(constraint => {
                 xmlElem.appendChild(ConstraintTransform(this, constraint).toXml(xmlDoc));
             });
+        }
+
+        if (this.modelConnectors && this.modelConnectors.length > 0) {
+            this.modelConnectors.forEach(connector => {
+                xmlElem.appendChild(ModelConnectorTransform(this, connector).toXml(xmlDoc));
+            })
         }
 
         return xmlElem;

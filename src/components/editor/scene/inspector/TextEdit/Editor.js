@@ -1,4 +1,4 @@
-import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt, faSitemap } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Button, Card, Form, Nav, Tab } from 'react-bootstrap';
@@ -7,8 +7,9 @@ import DimensionTab from '../UiPhoneControl/DimensionTab';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import SpacingTab from '../UiPhoneControl/SpacingTab';
 import { ControlNumber, ControlText, ControlCustomColor, BackLink } from '../utils/FormKit';
+import ModelTab from '../UiPhoneControl/ModelTab';
 
-const TextEditEditor = ({ control, viewController, scene, onCreate, onEdit, onDelete }) => {
+const TextEditEditor = ({ control, viewController, scene, onCreate, onEdit, onDelete, onConnect, onDisconnect }) => {
     let textEdit = control;
     return (
         <Card className="w-100">
@@ -39,6 +40,11 @@ const TextEditEditor = ({ control, viewController, scene, onCreate, onEdit, onDe
                                 <FontAwesomeIcon icon={faIndent} />
                             </Nav.Link>
                         </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="model">
+                                <FontAwesomeIcon icon={faSitemap} />
+                            </Nav.Link>
+                        </Nav.Item>
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey="main">
@@ -64,6 +70,16 @@ const TextEditEditor = ({ control, viewController, scene, onCreate, onEdit, onDe
                         </Tab.Pane>
                         <Tab.Pane eventKey="spacing">
                             <SpacingTab uiPhoneControl={textEdit} onEdit={onEdit} enableMargin={true} enablePadding={true} />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="model">
+                            <ModelTab
+                                scene={scene}
+                                viewController={viewController}
+                                uiPhoneControl={control}
+                                onConnect={onConnect}
+                                onDisconnect={onDisconnect}
+                                properties={['value']}
+                            />
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>

@@ -2,6 +2,7 @@ import DataArchive from "../utils/DataArchive";
 import { ViewControllerScene } from "./ViewController";
 import { SMARTPHONE } from "../Constants";
 import { NavigationSelectorAll } from "./Navigation";
+import { AdapterSelector } from "./AdapterBinding";
 
 function recompute(state, scene) {
     if (scene) {
@@ -10,7 +11,8 @@ function recompute(state, scene) {
             ...scene,
             layout,
             valid: layout[SMARTPHONE].containers.length > 0,
-            reachable: scene.launcher || NavigationSelectorAll(state).map(nav => nav.toSceneId === scene.id).reduce((prev, curr) => prev || curr, false)
+            reachable: scene.launcher || NavigationSelectorAll(state).map(nav => nav.toSceneId === scene.id).reduce((prev, curr) => prev || curr, false),
+            adapters: AdapterSelector(state, scene.id)
         }
     } else {
         return null;

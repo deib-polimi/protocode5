@@ -64,3 +64,6 @@ export const DATABASE_RELATION = 'entityRelationships';
 export const CLOUD_HANDLER = 'cloudHandler';
 export const CLOUD_OBJECT = 'cloudObjects';
 export const CLOUD_ATTRIBUTE = 'objectAttributes';
+
+export const MODEL_CONNECTOR = 'modelConnectors';
+export const ADAPTER_BINDING = 'adapterBindings';
