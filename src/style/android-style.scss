@@ -406,4 +406,17 @@ $background-opacity: 0.8;
         top: 6px;
         position: relative;
     }
+    /*============ MENU ==============*/
+    .app-menu-item {
+        position: relative;
+        color: #444444;
+        align-self: auto;
+        padding-left: 40px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 100%;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 }

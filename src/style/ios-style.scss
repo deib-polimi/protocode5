@@ -374,4 +374,16 @@ $ios-uiview-background-color: #9db2cc;
     .control-spinner .control-content p .caret {
         display: none;
     }
+    /*================ MENU ================*/
+    .app-menu-item {
+        position: relative;
+        color: #000000;
+        align-self: auto;
+        padding-left: 40px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 100%;
+        font-size: 17px;
+        cursor: pointer;
+    }
 }
