@@ -3,7 +3,7 @@
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
-    display: inline-block;
+    // display: inline-block;
 
     input {
         margin-top: 5px;
@@ -19,37 +19,39 @@
 
     &.adapter-binding-file {
         background-color: #F00;
-        &::before {
+        small:first-of-type::before {
             content: 'File: '
         }
     }
     &.adapter-binding-preference {
         background-color: #0F0;
-        &::before {
+        small:first-of-type::before {
             content: 'Preference: '
         }
     }
     &.adapter-binding-cloud {
         background-color: #00F;
-        &::before {
+        color: white;
+        small:first-of-type::before {
             content: 'Cloud object: '
         }
     }
     &.adapter-binding-entity {
         background-color: #FF0;
-        &::before {
+        small:first-of-type::before {
             content: 'Entity: '
         }
     }
     &.adapter-binding-cloud.adapter-binding-list {
         background-color: #00F;
-        &::before {
+        color: white;
+        & small:first-of-type::before {
             content: 'List of cloud objects: '
         }
     }
     &.adapter-binding-entity.adapter-binding-list {
         background-color: #FF0;
-        &::before {
+        & small:first-of-type::before {
             content: 'List of entities: '
         }
     }

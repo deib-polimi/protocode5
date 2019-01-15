@@ -49,8 +49,8 @@ export default class ObjectEditor extends React.Component {
             return <Redirect to="/model/cloud" />
         }
         return (
-            <div class='entity-editor'>
-                <div class='entity-header'>
+            <div className='entity-editor'>
+                <div className='entity-header'>
                     <InputGroup size="sm">
                         <InputGroup.Prepend>
                             <InputGroup.Text>Name:</InputGroup.Text>

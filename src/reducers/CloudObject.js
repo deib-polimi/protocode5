@@ -1,5 +1,5 @@
 import DataArchive from "../utils/DataArchive";
-import { DISABLE_CLOUD_DATABASE } from "../actions/DataHandlers";
+import { DISABLE_CLOUD_DATABASE, ENABLE_CLOUD_DATABASE } from "../actions/DataHandlers";
 import { CREATE_CLOUD_OBJECT, EDIT_CLOUD_OBJECT, DELETE_CLOUD_OBJECT } from "../actions/CloudObject";
 
 function createInitialState() {
@@ -10,7 +10,12 @@ const InitialState = createInitialState();
 
 export default function CloudObjectReducer(state = InitialState, action) {
     switch(action.type) {
-        case CREATE_CLOUD_OBJECT:  
+        case ENABLE_CLOUD_DATABASE:
+            return DataArchive.Insert(state, {
+                id: '__root__',
+                name: 'Root Object'
+            })
+        case CREATE_CLOUD_OBJECT:
             return DataArchive.Insert(state, action.object);
         case EDIT_CLOUD_OBJECT:
             return DataArchive.Merge(state, {

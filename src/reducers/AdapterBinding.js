@@ -14,6 +14,7 @@ export default function AdapterBindingReducer(state = InitialState, action) {
                 entityId: action.entity,
                 preferenceId: action.preference,
                 cloudObjectId: action.cloudObject,
+                cloudRefPath: action.cloudRefPath,
                 isList: action.isList,
                 name: action.name,
                 id: action.adapterId

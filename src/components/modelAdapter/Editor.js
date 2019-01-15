@@ -74,8 +74,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        bind: (name, scene, adapterClass, fileName, entityName, preferenceName, cloudObjectName, isList) => {
-            dispatch(createAdapterBinding(name, scene, adapterClass, fileName, entityName, preferenceName, cloudObjectName, isList))
+        bind: (name, scene, adapterClass, fileName, entityName, preferenceName, cloudObjectName, isList, cloudRefPath) => {
+            dispatch(createAdapterBinding(name, scene, adapterClass, fileName, entityName, preferenceName, cloudObjectName, isList, cloudRefPath))
         },
         unbind: id => dispatch(deleteAdapterBinding(id))
     }

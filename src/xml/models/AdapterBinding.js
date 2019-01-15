@@ -19,8 +19,13 @@ function transform(scene) {
                 elem.setAttribute('entity', EntityTransform(this.entity).getRefPath()); break;
             case PREFERENCE:
                 elem.setAttribute('preference', DefaultPreferenceRecordTransform(this.preference).getRefPath()); break;
-            case CLOUD_OBJECT:
-                elem.setAttribute('object', CloudObjectTransform(this.cloudObject).getRefPath()); break;
+            case CLOUD_OBJECT: {
+                let refPath = this.cloudRefPath;
+                if (refPath.charAt(0) === '.') refPath = refPath.substr(1);
+                elem.setAttribute('object', CloudObjectTransform(this.cloudObject).getRefPath()); 
+                elem.setAttribute('cloudRefPath', refPath);
+                break;
+            }
             default: 
                 break;
         }

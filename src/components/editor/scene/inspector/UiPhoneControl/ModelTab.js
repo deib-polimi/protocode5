@@ -2,7 +2,7 @@ import { faCaretDown, faCaretRight, faCircle } from '@fortawesome/free-solid-svg
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Alert, Button } from 'react-bootstrap';
-import { FILESTORAGE, ENTITY, PREFERENCE } from '../../../../../Constants';
+import { FILESTORAGE, ENTITY, PREFERENCE, CLOUD_OBJECT } from '../../../../../Constants';
 
 const LeafNode = ({ caption, keyPath, onConnect }) => (
     <li onClick={() => onConnect(keyPath)}>
@@ -31,6 +31,24 @@ const EntityListNode = ({ caption, entity, keyPath, onConnect }) => (
         </p>
     </li>
 );
+
+const CloudObjectNode = ({ caption, object, keyPath, isList, onConnect }) => (
+    <li>
+        <p onClick={() => onConnect(keyPath)}>
+            <FontAwesomeIcon icon={faCaretDown} /> {`${caption}: ${isList ? 'List of' : ''} ${object.name}`}
+        </p>
+        <ul>
+            {isList && 
+                <CloudObjectNode caption="Item of list" object={object} keyPath={`${keyPath}.*item*`} isList={false} onConnect={onConnect} />
+            }
+            {!isList &&
+                object.attributes.map(attr => (
+                    <LeafNode key={attr.id} caption={attr.name + ' (' + attr.type + ')'} keyPath={keyPath + '.' + attr.name} onConnect={onConnect} />
+                ))
+            }
+        </ul>
+    </li>
+)
 
 const ModelTab = ({ scene, viewController, uiPhoneControl, onConnect, onDisconnect, properties }) => {
     return (
@@ -98,6 +116,16 @@ const ModelTab = ({ scene, viewController, uiPhoneControl, onConnect, onDisconne
                                                 onConnect={keyPath => onConnect(scene.id, viewController.id, uiPhoneControl.id, adapter.id, keyPath, property)}
                                             />
                                         );
+                                    }
+                                    if (adapter.adapterClass === CLOUD_OBJECT) {
+                                        return (<CloudObjectNode
+                                            key={adapter.id}
+                                            caption={adapter.name}
+                                            object={adapter.cloudObject}
+                                            isList={adapter.isList}
+                                            keyPath={''}
+                                            onConnect={keyPath => onConnect(scene.id, viewController.id, uiPhoneControl.id, adapter.id, keyPath, property)}
+                                        />);
                                     }
                                     return <></>;
                                 })}
