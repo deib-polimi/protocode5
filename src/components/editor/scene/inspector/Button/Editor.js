@@ -1,15 +1,16 @@
 import React from 'react';
 import { Card, Tab, Nav, Form, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faPencilAlt, faArrowsAlt, faExpand, faIndent } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faPencilAlt, faArrowsAlt, faExpand, faIndent, faSitemap } from '@fortawesome/free-solid-svg-icons';
 import { ControlText, ControlNumber, ControlCustomColor, BackLink } from '../utils/FormKit';
 import SpacingTab from '../UiPhoneControl/SpacingTab';
 import DimensionTab from '../UiPhoneControl/DimensionTab';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import { UI_PHONE_CONTROL_CONSTRAINT, CONTROL_CHAIN, SMARTPHONE } from '../../../../../Constants';
 import NavigationEditor from '../partials/NavigationEditor';
+import ModelTab from '../UiPhoneControl/ModelTab';
 
-const ButtonEditor = ({ control, viewController, scene, onCreate, onEdit, onDelete, onNavigationCreate, onNavigationEdit, onNavigationDelete, scenes }) => {
+const ButtonEditor = ({ control, viewController, scene, onCreate, onEdit, onDelete, onNavigationCreate, onNavigationEdit, onNavigationDelete, scenes, onConnect, onDisconnect }) => {
     let button = control;
     let targetViewControllers = [];
     if (scene) {
@@ -49,6 +50,11 @@ const ButtonEditor = ({ control, viewController, scene, onCreate, onEdit, onDele
                                 <FontAwesomeIcon icon={faIndent} />
                             </Nav.Link>
                         </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="model">
+                                <FontAwesomeIcon icon={faSitemap} />
+                            </Nav.Link>
+                        </Nav.Item>
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey="main">
@@ -85,6 +91,16 @@ const ButtonEditor = ({ control, viewController, scene, onCreate, onEdit, onDele
                         </Tab.Pane>
                         <Tab.Pane eventKey="spacing">
                             <SpacingTab uiPhoneControl={button} onEdit={onEdit} enableMargin={true} enablePadding={true} />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="model">
+                            <ModelTab
+                                scene={scene}
+                                viewController={viewController}
+                                uiPhoneControl={control}
+                                onConnect={onConnect}
+                                onDisconnect={onDisconnect}
+                                properties={['title']}
+                            />
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>

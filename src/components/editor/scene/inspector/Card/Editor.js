@@ -71,15 +71,6 @@ const CardEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete
                             />
                         </Tab.Pane>
                         <Tab.Pane eventKey="model">
-                            <PositionTab
-                                scene={scene}
-                                viewController={viewController}
-                                uiPhoneControl={card}
-                                onEdit={onEdit}
-                                onCreateConstraint={(...args) => onCreate(UI_PHONE_CONTROL_CONSTRAINT, ...args)}
-                            />
-                        </Tab.Pane>
-                        <Tab.Pane eventKey="model">
                             <ModelTab
                                 scene={scene}
                                 viewController={viewController}

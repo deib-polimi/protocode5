@@ -51,6 +51,9 @@ const CloudObjectNode = ({ caption, object, keyPath, isList, onConnect }) => (
 )
 
 const ModelTab = ({ scene, viewController, uiPhoneControl, onConnect, onDisconnect, properties }) => {
+    if (!scene) {
+        return <Alert variant="danger">{'Please, select a scene this VC belongs to in order to use this tab'}</Alert>
+    }
     return (
         <>
             {properties.map(property => {
