@@ -1,14 +1,16 @@
-import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Button, Card, Form, Nav, Tab } from 'react-bootstrap';
-import { UI_PHONE_CONTROL_CONSTRAINT, CONTROL_CHAIN } from '../../../../../Constants';
+import { Button, Card, Form, Tab } from 'react-bootstrap';
+import { CONTROL_CHAIN, UI_PHONE_CONTROL_CONSTRAINT } from '../../../../../Constants';
+import { DefaultNav } from '../partials/CommonNav';
 import DimensionTab from '../UiPhoneControl/DimensionTab';
+import ModelTab from '../UiPhoneControl/ModelTab';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import SpacingTab from '../UiPhoneControl/SpacingTab';
-import { ControlText, ControlNumber, BackLink } from '../utils/FormKit';
+import { BackLink, ControlNumber, ControlText } from '../utils/FormKit';
 
-const MapEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete }) => {
+const MapEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete, onConnect, onDisconnect }) => {
     const map = control;
     return (
         <Card className="w-100">
@@ -18,28 +20,7 @@ const MapEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete 
             </Card.Header>
             <Card.Body>
                 <Tab.Container id="map-props-editor" defaultActiveKey="main">
-                    <Nav variant="tabs" className="border-bottom mb-3">
-                        <Nav.Item>
-                            <Nav.Link eventKey="main">
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="position">
-                                <FontAwesomeIcon icon={faArrowsAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="dimension">
-                                <FontAwesomeIcon icon={faExpand} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="spacing">
-                                <FontAwesomeIcon icon={faIndent} />
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
+                    <DefaultNav main position dimension spacing model />
                     <Tab.Content>
                         <Tab.Pane eventKey="main">
                             <Form>
@@ -62,6 +43,16 @@ const MapEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete 
                         </Tab.Pane>
                         <Tab.Pane eventKey="spacing">
                             <SpacingTab uiPhoneControl={map} onEdit={onEdit} enableMargin={true} enablePadding={true} />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="model">
+                            <ModelTab
+                                scene={scene}
+                                viewController={viewController}
+                                uiPhoneControl={map}
+                                onConnect={onConnect}
+                                onDisconnect={onDisconnect}
+                                properties={['latitude', 'longitude']}
+                            />
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>

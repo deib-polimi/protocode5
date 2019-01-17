@@ -1,10 +1,11 @@
-import React from 'react';
-import { Card, Button, Tab, Nav, Form, Row, Col, ListGroup, Alert } from 'react-bootstrap';
+import { faListUl, faPencilAlt, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faListUl, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { CONTROL_CHAIN_AXIS_VERTICAL, CONTROL_CHAIN_AXIS_HORIZONTAL, CONTROL_CHAIN_TYPE_SPREAD, CONTROL_CHAIN_TYPE_SPREAD_INSIDE, CONTROL_CHAIN_TYPE_PACKED, CONTROL_CHAIN_TYPE_WEIGHTED, CONTROL_CHAIN_POSSIBLE_MEMBERS } from '../../../../../Constants';
-import { ControlNumber, BackLink } from '../utils/FormKit';
+import React from 'react';
+import { Alert, Button, Card, Col, Form, ListGroup, Row, Tab } from 'react-bootstrap';
+import { CONTROL_CHAIN_AXIS_HORIZONTAL, CONTROL_CHAIN_AXIS_VERTICAL, CONTROL_CHAIN_POSSIBLE_MEMBERS, CONTROL_CHAIN_TYPE_PACKED, CONTROL_CHAIN_TYPE_SPREAD, CONTROL_CHAIN_TYPE_SPREAD_INSIDE, CONTROL_CHAIN_TYPE_WEIGHTED } from '../../../../../Constants';
 import SmartFormControl from '../../../../../utils/SmartChangeEvent';
+import { CommonNav } from '../partials/CommonNav';
+import { BackLink, ControlNumber } from '../utils/FormKit';
 
 const MemberGroup = ({ members, onControlEdit }) => {
     if (members.length > 0) {
@@ -73,21 +74,13 @@ export default class ControlChainEditor extends React.Component {
                         </Alert>
                     }
                     <Tab.Container id="chain-props-editor" defaultActiveKey="main">
-                        <Nav variant="tabs" className="border-bottom mb-3">
-                            <Nav.Item>
-                                <Nav.Link eventKey="main">
-                                    <FontAwesomeIcon icon={faPencilAlt} />
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="members">
-                                    <FontAwesomeIcon icon={faListUl} />
-                                </Nav.Link>
-                            </Nav.Item>
-                        </Nav>
+                        <CommonNav items={[
+                            { eventKey: 'main', icon: faPencilAlt }, 
+                            { eventKey: 'members', icon: faListUl }
+                        ]} />
                         <Tab.Content>
                             <Tab.Pane eventKey="main">
-                                {isSomeMemberConstrained && 
+                                {isSomeMemberConstrained &&
                                     <Alert variant="warning">
                                         <p>Some members have constraints on them, you won't be able to change the axis of the chain unless you remove those constraints</p>
                                     </Alert>

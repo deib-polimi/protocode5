@@ -1,13 +1,14 @@
-import { faAlignCenter, faAlignLeft, faAlignRight, faArrowsAlt, faBold, faExpand, faFont, faIndent, faItalic, faPencilAlt, faTrashAlt, faSitemap } from '@fortawesome/free-solid-svg-icons';
+import { faAlignCenter, faAlignLeft, faAlignRight, faBold, faFont, faItalic, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Button, ButtonGroup, Card, Col, Form, Nav, Row, Tab } from 'react-bootstrap';
-import { UI_PHONE_CONTROL_CONSTRAINT, CONTROL_CHAIN } from '../../../../../Constants';
+import { Button, ButtonGroup, Card, Col, Form, Row, Tab } from 'react-bootstrap';
+import { CONTROL_CHAIN, UI_PHONE_CONTROL_CONSTRAINT } from '../../../../../Constants';
+import { DefaultNav } from '../partials/CommonNav';
 import DimensionTab from '../UiPhoneControl/DimensionTab';
+import ModelTab from '../UiPhoneControl/ModelTab';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import SpacingTab from '../UiPhoneControl/SpacingTab';
-import { ControlColor, ControlNumber, ControlText, BackLink } from '../utils/FormKit';
-import ModelTab from '../UiPhoneControl/ModelTab';
+import { BackLink, ControlColor, ControlNumber, ControlText } from '../utils/FormKit';
 
 const LabelEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete, onConnect, onDisconnect }) => {
     const label = control;
@@ -19,33 +20,7 @@ const LabelEditor = ({ control, scene, viewController, onCreate, onEdit, onDelet
             </Card.Header>
             <Card.Body>
                 <Tab.Container id="label-props-editor" defaultActiveKey="main">
-                    <Nav variant="tabs" className="border-bottom mb-3">
-                        <Nav.Item>
-                            <Nav.Link eventKey="main">
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="position">
-                                <FontAwesomeIcon icon={faArrowsAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="dimension">
-                                <FontAwesomeIcon icon={faExpand} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="spacing">
-                                <FontAwesomeIcon icon={faIndent} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="model">
-                                <FontAwesomeIcon icon={faSitemap} />
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
+                    <DefaultNav main position dimension spacing model />
                     <Tab.Content>
                         <Tab.Pane eventKey="main">
                             <Form>

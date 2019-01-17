@@ -1,10 +1,9 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsAlt, faExpand } from '@fortawesome/free-solid-svg-icons';
-import { Card, Tab, Nav } from 'react-bootstrap';
-import PositionTab from '../UiPhoneControl/PositionTab';
-import DimensionTab from '../UiPhoneControl/DimensionTab';
+import { Card, Tab } from 'react-bootstrap';
 import { UI_PHONE_CONTROL_CONSTRAINT } from '../../../../../Constants';
+import { DefaultNav } from '../partials/CommonNav';
+import DimensionTab from '../UiPhoneControl/DimensionTab';
+import PositionTab from '../UiPhoneControl/PositionTab';
 import { BackLink } from '../utils/FormKit';
 
 const ContainerEditor = ({ control, scene, viewController, onEdit, onCreate }) => {
@@ -17,18 +16,7 @@ const ContainerEditor = ({ control, scene, viewController, onEdit, onCreate }) =
             </Card.Header>
             <Card.Body>
                 <Tab.Container id="container-editor" defaultActiveKey="position">
-                    <Nav variant="tabs" className="border-bottom mb-3" defaultActiveKey="position">
-                        <Nav.Item>
-                            <Nav.Link eventKey="position">
-                                <FontAwesomeIcon icon={faArrowsAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="dimension">
-                                <FontAwesomeIcon icon={faExpand} />
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
+                    <DefaultNav position dimension />
                     <Tab.Content>
                         <Tab.Pane eventKey="position">
                             <PositionTab

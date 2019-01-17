@@ -1,16 +1,17 @@
-import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt, faPlus, faSave, faTimes, faSitemap, faTable } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSave, faTable, faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Button, Card, Form, Nav, Tab, ButtonGroup, ListGroup, Col, InputGroup, Row } from 'react-bootstrap';
-import { UI_PHONE_CONTROL_CONSTRAINT, LIST_VIEW_SIMPLE, LIST_VIEW_DETAILED, LIST_VIEW_IMAGE, UI_PHONE_ELEMENT_LIST_VIEW_CELL, UI_PHONE_CONTROL_LIST_VIEW, CONTROL_CHAIN, SMARTPHONE } from '../../../../../Constants';
+import { Button, ButtonGroup, Card, Col, Form, InputGroup, ListGroup, Row, Tab } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { CONTROL_CHAIN, LIST_VIEW_DETAILED, LIST_VIEW_IMAGE, LIST_VIEW_SIMPLE, SMARTPHONE, UI_PHONE_CONTROL_CONSTRAINT, UI_PHONE_CONTROL_LIST_VIEW, UI_PHONE_ELEMENT_LIST_VIEW_CELL } from '../../../../../Constants';
+import SmartFormControl from '../../../../../utils/SmartChangeEvent';
+import { DefaultNav } from '../partials/CommonNav';
+import NavigationEditor from '../partials/NavigationEditor';
 import DimensionTab from '../UiPhoneControl/DimensionTab';
+import ModelTab from '../UiPhoneControl/ModelTab';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import SpacingTab from '../UiPhoneControl/SpacingTab';
-import { ControlText, ControlCustomColor, BackLink } from '../utils/FormKit';
-import SmartFormControl from '../../../../../utils/SmartChangeEvent';
-import { Link } from 'react-router-dom';
-import NavigationEditor from '../partials/NavigationEditor';
-import ModelTab from '../UiPhoneControl/ModelTab';
+import { BackLink, ControlCustomColor, ControlText } from '../utils/FormKit';
 import ListCellModelEditor from './EditorModelCell';
 
 class ListViewEditor extends React.Component {
@@ -70,38 +71,7 @@ class ListViewEditor extends React.Component {
                 </Card.Header>
                 <Card.Body>
                     <Tab.Container id="listview-props-editor" defaultActiveKey="main">
-                        <Nav variant="tabs" className="border-bottom mb-3">
-                            <Nav.Item>
-                                <Nav.Link eventKey="main">
-                                    <FontAwesomeIcon icon={faPencilAlt} />
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="position">
-                                    <FontAwesomeIcon icon={faArrowsAlt} />
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="dimension">
-                                    <FontAwesomeIcon icon={faExpand} />
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="spacing">
-                                    <FontAwesomeIcon icon={faIndent} />
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="model">
-                                    <FontAwesomeIcon icon={faSitemap} />
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="cellmodel">
-                                    <FontAwesomeIcon icon={faTable} />
-                                </Nav.Link>
-                            </Nav.Item>
-                        </Nav>
+                        <DefaultNav main position dimension spacing model others={[{ eventKey: 'cellmodel', icon: faTable }]} />
                         <Tab.Content>
                             <Tab.Pane eventKey="main">
                                 <Form>

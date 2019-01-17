@@ -1,12 +1,13 @@
-import { faHome, faPencilAlt, faPlus, faTh, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlus, faTh, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Alert, Button, Card, Col, Form, ListGroup, Nav, Row, Tab } from 'react-bootstrap';
+import { Alert, Button, Card, Col, Form, ListGroup, Row, Tab } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
 import { SCENE_MULTI_VC, SCENE_SINGLE_VC, SCENE_SINGLE_VC_TAB } from '../../../../../Constants';
 import SingleVCImage from '../../../../../img/gui/scene_type_1.jpg';
 import SingleVCTabImage from '../../../../../img/gui/scene_type_2.jpg';
 import MultiVCImage from '../../../../../img/gui/scene_type_3.jpg';
+import { DefaultNav } from '../partials/CommonNav';
 import { ControlImageSelect, ControlText } from '../utils/FormKit';
 
 const SceneEditor = ({ viewControllers, scene, onLinkCreate, onEdit, onParentVCEdit, onDelete, onLinkDelete, device, onCreateConstraint, onContainerEdit }) => {
@@ -29,13 +30,7 @@ const SceneEditor = ({ viewControllers, scene, onLinkCreate, onEdit, onParentVCE
                 </Card.Header>
                 <Card.Body>
                     <Tab.Container id="view-controller-props-editor" defaultActiveKey="main">
-                        <Nav variant="tabs" className="border-bottom mb-3">
-                            <Nav.Item>
-                                <Nav.Link eventKey="main">
-                                    <FontAwesomeIcon icon={faPencilAlt} />
-                                </Nav.Link>
-                            </Nav.Item>
-                        </Nav>
+                        <DefaultNav main />
                         <Tab.Content>
                             <Tab.Pane eventKey="main">
                                 {!scene.valid && 

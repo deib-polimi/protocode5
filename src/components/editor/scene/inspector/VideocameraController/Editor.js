@@ -1,13 +1,14 @@
-import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Button, Card, Form, Nav, Tab, Row, Col, ButtonGroup } from 'react-bootstrap';
-import { UI_PHONE_CONTROL_CONSTRAINT, UI_PHONE_CONTROL_VIDEO_VIEW, VIDEOCAMERA_BACKGROUND_NORMAL, VIDEOCAMERA_BACKGROUND_ICON, CONTROL_CHAIN } from '../../../../../Constants';
+import { Button, ButtonGroup, Card, Col, Form, Row, Tab } from 'react-bootstrap';
+import { CONTROL_CHAIN, UI_PHONE_CONTROL_CONSTRAINT, UI_PHONE_CONTROL_VIDEO_VIEW, VIDEOCAMERA_BACKGROUND_ICON, VIDEOCAMERA_BACKGROUND_NORMAL } from '../../../../../Constants';
+import SmartFormControl from '../../../../../utils/SmartChangeEvent';
+import { DefaultNav } from '../partials/CommonNav';
 import DimensionTab from '../UiPhoneControl/DimensionTab';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import SpacingTab from '../UiPhoneControl/SpacingTab';
-import { ControlText, BackLink } from '../utils/FormKit';
-import SmartFormControl from '../../../../../utils/SmartChangeEvent';
+import { BackLink, ControlText } from '../utils/FormKit';
 
 const VideoCameraControllerEditor = ({ control, scene, viewController, onCreate, onEdit, onDelete }) => {
     const videoCameraController = control;
@@ -20,28 +21,7 @@ const VideoCameraControllerEditor = ({ control, scene, viewController, onCreate,
             </Card.Header>
             <Card.Body>
                 <Tab.Container id="videoCameraController-props-editor" defaultActiveKey="main">
-                    <Nav variant="tabs" className="border-bottom mb-3">
-                        <Nav.Item>
-                            <Nav.Link eventKey="main">
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="position">
-                                <FontAwesomeIcon icon={faArrowsAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="dimension">
-                                <FontAwesomeIcon icon={faExpand} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="spacing">
-                                <FontAwesomeIcon icon={faIndent} />
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
+                    <DefaultNav main position dimension spacing />
                     <Tab.Content>
                         <Tab.Pane eventKey="main">
                             <Form>

@@ -1,12 +1,13 @@
-import React from 'react';
-import { Card, Tab, Nav, Button } from 'react-bootstrap';
+import { faCreditCard, faExclamationCircle, faPencilAlt, faRandom, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faExclamationCircle, faCreditCard, faRandom, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import MainProperties from './MainProperties';
-import Async from './Async';
-import Alerts from './Alerts';
-import Progresses from './Progresses';
+import React from 'react';
+import { Button, Card, Tab } from 'react-bootstrap';
+import { CommonNav } from '../partials/CommonNav';
 import { BackLink } from '../utils/FormKit';
+import Alerts from './Alerts';
+import Async from './Async';
+import MainProperties from './MainProperties';
+import Progresses from './Progresses';
 
 const ViewControllerEditor = ({ match, viewController, scene, onCreate, onEdit, onAlertAdd, onProgressAdd, onAsyncTaskAdd, onDelete }) => (
     <>
@@ -19,32 +20,16 @@ const ViewControllerEditor = ({ match, viewController, scene, onCreate, onEdit, 
             </Card.Header>
             <Card.Body>
                 <Tab.Container id="view-controller-props-editor" defaultActiveKey="main">
-                    <Nav variant="tabs" className="border-bottom mb-3">
-                        <Nav.Item>
-                            <Nav.Link eventKey="main">
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            </Nav.Link>
-                        </Nav.Item>
-                        {!viewController.isParent &&
-                            <>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="alert">
-                                        <FontAwesomeIcon icon={faExclamationCircle} />{viewController.alertDialogs.length}
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="progress">
-                                        <FontAwesomeIcon icon={faCreditCard} />{viewController.progressDialogs.length}
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="async">
-                                        <FontAwesomeIcon icon={faRandom} />{viewController.asyncTasks.length}
-                                    </Nav.Link>
-                                </Nav.Item>
-                            </>
-                        }
-                    </Nav>
+                    <CommonNav items={
+                        viewController.isParent ? 
+                        [{ eventKey: 'main', icon: faPencilAlt }] :
+                        [
+                            { eventKey: 'main', icon: faPencilAlt },
+                            { eventKey: 'alert', icon: faExclamationCircle },
+                            { eventKey: 'progress', icon: faCreditCard },
+                            { eventKey: 'async', icon: faRandom },
+                        ]
+                    } />
                     <Tab.Content>
                         <Tab.Pane eventKey="main">
                             <MainProperties
