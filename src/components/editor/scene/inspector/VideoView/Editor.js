@@ -2,7 +2,7 @@ import { faArrowsAlt, faExpand, faIndent, faPencilAlt, faTrashAlt, faSitemap } f
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Button, Card, Form, Nav, Tab } from 'react-bootstrap';
-import { UI_PHONE_CONTROL_CONSTRAINT, CONTROL_CHAIN } from '../../../../../Constants';
+import { UI_PHONE_CONTROL_CONSTRAINT, CONTROL_CHAIN, SOURCE_TYPE_HARDWARE } from '../../../../../Constants';
 import DimensionTab from '../UiPhoneControl/DimensionTab';
 import PositionTab from '../UiPhoneControl/PositionTab';
 import SpacingTab from '../UiPhoneControl/SpacingTab';
@@ -41,11 +41,13 @@ const VideoViewEditor = ({ control, scene, viewController, onCreate, onEdit, onD
                                 <FontAwesomeIcon icon={faIndent} />
                             </Nav.Link>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="model">
-                                <FontAwesomeIcon icon={faSitemap} />
-                            </Nav.Link>
-                        </Nav.Item>
+                        {videoView.sourceType.type !== SOURCE_TYPE_HARDWARE && 
+                            <Nav.Item>
+                                <Nav.Link eventKey="model">
+                                    <FontAwesomeIcon icon={faSitemap} />
+                                </Nav.Link>
+                            </Nav.Item>
+                        }
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey="main">
@@ -72,16 +74,18 @@ const VideoViewEditor = ({ control, scene, viewController, onCreate, onEdit, onD
                         <Tab.Pane eventKey="spacing">
                             <SpacingTab uiPhoneControl={videoView} onEdit={onEdit} enableMargin={true} enablePadding={true} />
                         </Tab.Pane>
-                        <Tab.Pane eventKey="model">
-                            <ModelTab
-                                scene={scene}
-                                viewController={viewController}
-                                uiPhoneControl={control}
-                                onConnect={onConnect}
-                                onDisconnect={onDisconnect}
-                                properties={['source']}
-                            />
-                        </Tab.Pane>
+                        {videoView.sourceType.type !== SOURCE_TYPE_HARDWARE && 
+                            <Tab.Pane eventKey="model">
+                                <ModelTab
+                                    scene={scene}
+                                    viewController={viewController}
+                                    uiPhoneControl={control}
+                                    onConnect={onConnect}
+                                    onDisconnect={onDisconnect}
+                                    properties={['source']}
+                                />
+                            </Tab.Pane>
+                        }
                     </Tab.Content>
                 </Tab.Container>
             </Card.Body>

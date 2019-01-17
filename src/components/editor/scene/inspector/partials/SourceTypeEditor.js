@@ -24,7 +24,9 @@ const SourceTypeEditor = ({ sourceType, onEdit }) => (
                 </ButtonGroup>
             </Col>
         </Form.Group>
-        <ControlText caption="File Uri" value={sourceType.fileUri} onChange={val => onEdit('fileUri', val)} />
+        {sourceType.type !== SOURCE_TYPE_HARDWARE && 
+            <ControlText caption="File Uri" value={sourceType.fileUri} onChange={val => onEdit('fileUri', val)} />
+        }
     </>
 );
 
