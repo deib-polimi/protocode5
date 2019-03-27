@@ -1,9 +1,11 @@
+import { faCode, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import '../style/navbar.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload, faCode } from '@fortawesome/free-solid-svg-icons';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
+import { createApplication, deleteApplication } from '../actions/Application';
+import '../style/navbar.scss';
 import XmlGenerator from '../xml/XmlGenerator';
 
 const MainComponent = ({ app, model, onCreate, onDelete }) => {
@@ -80,4 +82,23 @@ const MainComponent = ({ app, model, onCreate, onDelete }) => {
     );
 }
 
-export default MainComponent;
+const mapStateToProps = (state) => {
+    return {
+        app: state.application,
+        model: state
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onCreate: () => dispatch(createApplication()),
+        onDelete: () => dispatch(deleteApplication()),
+    }
+}
+
+const _Navbar = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MainComponent);
+
+export default _Navbar;

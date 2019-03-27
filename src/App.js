@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from './containers/Navbar';
+import Navbar from './components/Navbar';
 import { Container } from 'react-bootstrap';
 import { Route } from 'react-router';
 import WelcomeComponent from './Welcome';

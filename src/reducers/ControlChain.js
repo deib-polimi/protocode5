@@ -17,7 +17,7 @@ export default function ControlChainReducer(state = InitialState, action) {
                 spacing: 0,
                 bias: 0.5,
                 members: {}
-            });
+            }); 
         case CREATE_UI_PHONE_CONTROL:
             if (action.controlChainId) {
                 return DataArchive.Merge(state, {
