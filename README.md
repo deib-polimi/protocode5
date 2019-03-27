@@ -74,7 +74,7 @@ In order to deploy the web application we need:
 
 * [Node.js](http://nodejs.org/)
 * [Yarn](https://yarnpkg.com)
-* [MobileCodeGenerator](https://github.com/polimi-deib/mobilecodegenerator5): this app is required to generate both iOS and Android projects from the model exported by Protocode.
+* [MobileCodeGenerator](https://github.com/deib-polimi/mobilecodegenerator5): this app is required to generate both iOS and Android projects from the model exported by Protocode.
 
 ## Installation ##
 
